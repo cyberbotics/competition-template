@@ -1,0 +1,23 @@
+name: Registration to benchmark
+description: Register to the benchmark by raising an issue! 
+labels: [registration]
+
+title: "Registration to benchmark"
+
+body:
+- type: input
+  id: repo_link
+  attributes:
+    label: GitHub repository URL
+    description: Paste here your GitHub repository URL
+    placeholder: https://github.com/USERNAME/REPOSITORY_NAME
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: |
+      ### Welcome to this benchmark!
+      Please enter your repository link in the box above and then click on **"Sumbit new issue"**.
+      There will be several automated checks to see if your repository is correctly setup.
+      The automated actions might take a bit of time before showing any feedback so please be patient.
+      You can refresh the page after a minute or so to help new messages appear.

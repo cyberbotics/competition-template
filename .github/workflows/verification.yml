@@ -1,0 +1,166 @@
+name: 'Repository link verification'
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+jobs:
+  verify-competitor:
+    if: > # Do the checks if there is a new registration or a 'retry' comment on a pending registration
+      (
+        join(github.event.issue.labels.*.name) == 'registration'
+      ) || (
+        contains(github.event.issue.labels.*.name, 'registration') &&
+        contains(github.event.issue.labels.*.name, 'pending') &&
+        github.event.issue.user.login == github.event.comment.user.login &&
+        contains(github.event.comment.body, 'retry')
+      )
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+    steps:
+      - name: Verification started message
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: Verification started...
+
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Isolate repo link
+        run: bash .github/repo_regex.sh "${{ github.event.issue.body }}" "${{ github.event.issue.user.login }}"
+        continue-on-error: true
+
+# First check | id: repo_check --N-> invites_check
+
+      - name: Is repo link actually a repo?
+
+        id: repo_check
+        run: |
+          gh api --silent \
+          -H "Accept: application/vnd.github+json" \
+          /repos/$USER_REPO
+        continue-on-error: true
+
+      - name: If repo not visible, is there a collaboration invite?
+
+        if: ${{ steps.repo_check.outcome == 'failure' }}
+        id: invites_check
+        run: |
+          invite_id=$( \
+            gh api \
+              -H "Accept: application/vnd.github+json" \
+              /user/repository_invitations | jq '.[] | select(.repository.full_name=="${{ env.USER_REPO }}") | .id' \
+          )
+          echo $invite_id
+          gh api --silent \
+            --method PATCH \
+            -H "Accept: application/vnd.github+json" \
+            /user/repository_invitations/$invite_id
+        continue-on-error: true
+
+      - name: If no invites, problem with collab or link syntax
+
+        if: ${{ steps.invites_check.outcome == 'failure' }}
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            There was a problem when checking your repository "${{ env.USER_REPO }}".
+            You haven't added the organizer as a collaborator or there is a typo in the link.
+
+# Second check | id: benchmark_check
+
+      - name: Is repo link a benchmark entry repo?
+
+        if: ${{ steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success' }}
+        id: benchmark_check
+        run: |
+          gh api --silent \
+            -H "Accept: application/vnd.github+json" \
+            /repos/$USER_REPO/contents/webots.yml
+        continue-on-error: true
+
+      - name: If not a benchmark repo, feedback on registration issue
+
+        if: ${{ steps.benchmark_check.outcome == 'failure' }}
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            There was a problem when checking your repository link.
+            It doesn't seem to be a benchmark repository.
+
+# If there was any problem:
+
+      - name: Adding the "pending" label if there was any problem
+
+        id: if_error
+        if: >
+          steps.invites_check.outcome == 'failure' ||
+          steps.benchmark_check.outcome == 'failure'
+        run: |
+          gh api --silent \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+            --input - <<< $(jq -n '{"labels":["pending"]}')
+
+      - name: Prompt on how to retry
+
+        if: ${{ steps.if_error.outcome == 'success' }}
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: >
+            Please do the necessary to fix this problem.
+            When you have finished solving the issue, please try again by commenting "retry"
+
+# Else everything is in order:
+
+      - name: Everything is in order, add feedback label
+
+        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        run: |
+          gh api --silent \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+            --input - <<< $(jq -n '{"labels":["accepted"]}')
+          gh api --silent \
+            --method DELETE \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels/pending
+        continue-on-error: true
+
+      - name: Add competitor to file
+
+        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        run: echo "${{ github.event.issue.number }}:$USER_REPO" >> competitors.txt
+
+      - name: Push competitor list update
+
+        if: ${{ steps.benchmark_check.outcome == 'success' }}      
+        run: |
+          git config --global user.name '${{ github.repository_owner }}'
+          git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
+          git add competitors.txt
+          git commit -m "Here comes a new challenger!"
+          git push
+
+      - name: Final feedback message
+        uses: peter-evans/close-issue@v1
+        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        with:
+          comment: |
+            #### Here comes a new challenger!
+            You have been added to the benchmark leaderboard.
+
+            Please note that your leaderboard score is **not** automatically updated.
+            If you want to test the last version of your controller that is in your repo's main branch,
+            add a new comment below containing the word "**run**".
+
+            If you want to unsubscribe your repository from the list, add a new comment below containing the word "**unsubscribe**".
+
+            Please note that the commands might take a few minutes before posting feedback messages. You can refresh the page to make recent comments appear.

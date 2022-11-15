@@ -1,0 +1,30 @@
+name: 'Generate new labels'
+on:
+  workflow_dispatch:
+jobs:
+  generate-labels:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: GitHub API to create labels
+        run: |
+          # create registration label
+          gh api \
+            --method POST -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/labels \
+            -f name='registration' -f color='D93F0B' \
+            -f description='Indicates a benchmark registration' \
+          # create pending label
+          gh api \
+            --method POST -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/labels \
+            -f name='pending' -f color='C5DEF5' \
+            -f description='There was a problem during registration' \
+          # create accepted label
+          gh api \
+            --method POST -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/labels \
+            -f name='accepted' -f color='0E8A16' \
+            -f description='You have been subscribed to the benchmark' \
+          

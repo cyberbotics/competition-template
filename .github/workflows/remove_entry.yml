@@ -1,0 +1,43 @@
+name: Remove user from list when asked
+
+on:
+  issue_comment:
+    types: [created]
+env: 
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  reset-entry:
+    if: >
+      contains(github.event.issue.labels.*.name, 'registration') &&
+      contains(github.event.issue.labels.*.name, 'accepted') &&
+      github.event.issue.user.login == github.event.comment.user.login &&
+      github.event.comment.body == 'unsubscribe'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Remove user from competitors.txt
+        run: sed -i '/^${{ github.event.issue.number }}:.*/d' competitors.txt
+
+      - name: Remove user animation from storage
+        run: rm -rf storage/wb_animation_${{ github.event.issue.number }}
+
+      - name: Push changes
+        run: |
+          git config --global user.name '${{ github.repository_owner }}'
+          git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
+          git commit -am "Removed competitor from benchmark"
+          git push
+
+      - name: Remove all labels
+        run: |
+          gh api \
+            --method DELETE \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels
+      - name: Message feedback
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: You have been successfully unsubscribed

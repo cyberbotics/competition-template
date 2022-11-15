@@ -7,11 +7,12 @@
 <!-- This is the shield badge where you can replace the webots.cloud link in brackets with your personal webots.cloud page -->
 [![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)](https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2FJean-Eudes-le-retour%2Fcontainer-benchmark-example%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark)
 
+<!-- TODO: add examples when available
 ## Benchmark examples
 
 - <https://github.com/cyberbotics/robot-programming-benchmark-disabled>
 - <https://github.com/cyberbotics/inverted-pendulum-benchmark-disabled>
-
+-->
 ## Organizer setup
 
 Here is a quick summary of the instructions for somebody who wants to organize a robotics simulation benchmark. The links in the rest of the setup are relative to the repository where the README is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its main page to continue reading the instructions.
@@ -22,7 +23,6 @@ You will then need to follow those steps:
 
 1. Go to the ![Settings tab](../../settings):
    1. Under the General section, tick the "Template repository" box so that the competitors can easily make a copy of the simulation files
-   <!-- 1. Go to ![Actions settings tab](../../settings/actions) and make sure that the "Allow all actions and reusable workflow" permission is activated. This allows the different automation scripts to do their job. If it is not the case, set it correctly and save the setting -->
 2. You will need to setup a GitHub secret to be able to fetch your competitors' controllers:
    1. ![Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard
    1. Go to the repo's ![secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN", paste in the Personal Access Token you just created and finally click the "Add secret" button

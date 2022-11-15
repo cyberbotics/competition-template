@@ -15,7 +15,7 @@
 -->
 ## Organizer setup
 
-To organize a benchmark, follow the instructions in the [ORGANIZER.md](../../ORGANIZER.md) file
+To organize your own benchmark, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file
 
 ---
 

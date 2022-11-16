@@ -17,10 +17,10 @@ You will then need to follow those steps:
 ### Webots files
 
 4. Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
-   - "worlds" for your Webots scenario
-   - "controllers" for your robot and supervisor controllers
-   - "plugins" for the HTML robot window
-   - "protos" if you need extra PROTOs
+   - [worlds](worlds) for your Webots scenario.
+   - [controllers](controllers) for your robot and supervisor controllers.
+   - [plugins](plugins) for the HTML robot windows.
+   - [protos](protos) if you need extra PROTOs.
 
 5. Make sure that inside the world file the supervisor node has the "synchronization" field set to TRUE and the **Robot node** has its **"synchronization" field set to FALSE**.
    - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).

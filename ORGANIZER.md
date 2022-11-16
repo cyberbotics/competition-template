@@ -26,8 +26,7 @@ You will then need to follow those steps:
    - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 
 6. In order for the automated script to recover the competitors' score correctly, the supervisor needs to print the final performance of the robot controller in the format "performance_line:SCORE" to stdout (only the SCORE part needs to be changed, which should be a float number).
-
-The score unit depends on the [metric used](#supported-metrics) for the benchmark which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
+The score unit depends on the [metric](#supported-metrics) used for the benchmark which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
 
 #### Supported metrics
 

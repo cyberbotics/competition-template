@@ -27,7 +27,9 @@ You will then need to follow those steps:
 
 6. In order for the automated script to recover the competitors' score correctly, the supervisor needs to print the final performance of the robot controller in the format "performance_line:SCORE" to stdout (only the SCORE part needs to be changed, which should be a float number).
 
-The score unit depends on the metric used for the benchmark. The supported metrics are:
+The score unit depends on the [metric used](#supported-metrics) for the benchmark which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
+
+#### Supported metrics
 
 - percent: ranks users based on how close they are to a given objective. The score is a value between 0 and 1.
 - time-speed: rank users based on how quick they complete the objective. The score is a time in seconds.
@@ -39,7 +41,7 @@ The score unit depends on the metric used for the benchmark. The supported metri
 7. Update the parameters inside ![webots.yml](../../edit/main/webots.yml):
    - file: set the relative path to your world file.
    - maximum-duration: the maximum duration of an evaluation in seconds. Set it not too large to avoid long evaluations of broken controllers but not too short to have enough time to finish the task.
-   - metric: defines the metric used for the benchmark.
+   - metric: defines the metric used for the benchmark. Use one of the values defined in the [metric table](#supported-metrics)
    - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "edit_me" to the name of your main robot controller.
    1. Don't forget to commit your changes to save them.
 8. When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, "Dockerfile" for the Webots container and "controller_Dockerfile" for the controller container which contains their setup. The default Dockerfiles will launch a standard version of Webots, open the world file defined in the webots.yml file and will look for a python controller with the default controller name also set in webots.yml for the robot.

@@ -9,10 +9,10 @@ You will then need to follow those steps:
 1. Go to the ![Settings tab](../../settings):
    1. Under the General section, tick the "Template repository" box so that the competitors can easily make a copy of the simulation files
 2. You will need to setup a GitHub secret to be able to fetch your competitors' controllers:
-   1. ![Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard
-   1. Go to the repo's ![secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN", paste in the Personal Access Token you just created and finally click the "Add secret" button
+   1. ![Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
+   1. Go to the repo's ![secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
 3. You will also need to add three custom labels for the automation scripts: "registration", "pending" and "accepted"
-   1. Go to the ![Generate new labels action](../../actions/workflows/generate_labels.yml) page under the Actions tab. Click on "Run workflow" to create automatically the needed labels
+   1. Go to the ![Generate new labels action](../../actions/workflows/generate_labels.yml) page under the Actions tab. Click on "Run workflow" to create automatically the needed labels. It may take a few seconds to complete the workflow.
 
 ### Webots files
 
@@ -22,19 +22,19 @@ You will then need to follow those steps:
    - "plugins" for the HTML robot window
    - "protos" if you need extra PROTOs
 
-5. Make sure that inside the world file the supervisor node has the "synchronization" field set to TRUE and the **robot node** has its **"synchronization" field set to FALSE**.
-   - Note that on webots.cloud, the listing title of the benchmark and its hover description are defined by the Webots world file: more specifically, the WorldInfo node has a "title" and an "info" field which are parsed at the submission to webots.cloud.
+5. Make sure that inside the world file the supervisor node has the "synchronization" field set to TRUE and the **Robot node** has its **"synchronization" field set to FALSE**.
+   - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 
 6. In order for the automated script to recover the competitors' score correctly, the supervisor needs to print the final performance of the robot controller in the format "performance_line:score" to stdout. "score" is a float value that depends on the metric used: it's a value between 0 and 1 for "percent", a time in seconds for "time-duration" and "time-speed" or a distance in meters for "distance".
 
 ### Benchmark specific files
 
-7. Update the fields inside ![webots.yml](../../edit/main/webots.yml):
-   - file: put the relative path to your world file
-   - maximum-duration: the maximum duration of an evaluation in seconds. Set it not large to avoid long evaluations of broken controllers but not too short to have enough time to finish the task
-   - metric: should be one of "percent", "time-speed", "time-duration" or "distance". It depends on how the performance is evaluated
-   - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default controller. Change "edit_me" to the name of your main controller
-   1. Don't forget to commit your changes to save them
+7. Update the parameters inside ![webots.yml](../../edit/main/webots.yml):
+   - file: set the relative path to your world file.
+   - maximum-duration: the maximum duration of an evaluation in seconds. Set it not too large to avoid long evaluations of broken controllers but not too short to have enough time to finish the task.
+   - metric: should be one of "percent", "time-speed", "time-duration" or "distance". It depends on how the performance is evaluated.
+   - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "edit_me" to the name of your main robot controller.
+   1. Don't forget to commit your changes to save them.
 8. When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, "Dockerfile" for the Webots container and "controller_Dockerfile" for the controller container which contains their setup. The default Dockerfiles will launch a standard version of Webots, open the world file defined in the webots.yml file and will look for a python controller with the default controller name also set in webots.yml for the robot.
    - If you need a special installation environment for your simulation or controller you can configure the Dockerfiles as needed. The default webots.cloud Docker image already has the tools needed to compile and run C, C++ and Python controllers
 9. Replace the three files of the ![preview folder](/preview) with an example animation of your benchmark [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.

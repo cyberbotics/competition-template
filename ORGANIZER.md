@@ -30,10 +30,12 @@ The score unit depends on the [metric](#supported-metrics) used for the benchmar
 
 #### Supported metrics
 
-- percent: ranks users based on how close they are to a given objective. The score is a value between 0 and 1.
-- time-speed: rank users based on how quick they complete the objective. The score is a time in seconds.
-- time-duration: ranks users based on how long they manage to do an action (e.g. maintain an inverted pendulum upright). The score is a time in seconds.
-- distance: ranks users based on how far they manage to make something travel. The score is a distance in meters.
+| name          | description                                                                                            | score value             |
+|---------------|--------------------------------------------------------------------------------------------------------|-------------------------|
+| percent       | ranks users based on how close they are to a given objective                                           | a value between 0 and 1 |
+| time-speed    | ranks users based on how quick they complete the objective                                             | a time in seconds       |
+| time-duration | ranks users based on how long they manage to do an action (e.g. maintain an inverted pendulum upright) | a time in seconds       |
+| distance      | ranks users based on how far they manage to make something travel                                      | a distance in meters    |
 
 ### Benchmark specific files
 

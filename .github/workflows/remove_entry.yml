@@ -1,4 +1,4 @@
-name: Remove user from list when asked
+name: Unregister user when requested
 
 on:
   issue_comment:
@@ -11,7 +11,7 @@ jobs:
       contains(github.event.issue.labels.*.name, 'registration') &&
       contains(github.event.issue.labels.*.name, 'accepted') &&
       github.event.issue.user.login == github.event.comment.user.login &&
-      github.event.comment.body == 'unsubscribe'
+      github.event.comment.body == 'unregister'
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -40,4 +40,4 @@ jobs:
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: You have been successfully unsubscribed
+          body: You have been successfully unregistered

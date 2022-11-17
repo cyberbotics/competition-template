@@ -1,7 +1,7 @@
 FROM cyberbotics/webots.cloud:R2022b
 
 # Environment variables needed for Webots
-#  https://cyberbotics.com/doc/guide/running-extern-robot-controllers#remote-extern-controllers
+# https://cyberbotics.com/doc/guide/running-extern-robot-controllers#remote-extern-controllers
 ENV PYTHONPATH=${WEBOTS_HOME}/lib/controller/python38
 ENV PYTHONIOENCODING=UTF-8
 
@@ -16,5 +16,5 @@ ARG DEFAULT_CONTROLLER
 ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 
 # Entrypoint command to launch default Python controller script
-#  (In shell form to allow variable expansion)
+# (In shell form to allow variable expansion)
 ENTRYPOINT python3 controllers/$DEFAULT_CONTROLLER/$DEFAULT_CONTROLLER.py

@@ -1,6 +1,6 @@
 name: Individual competitor evaluation of their controller
 
-run-name: "Individual evaluation of competitor ${{ github.event.issue.number }} : ${{ github.event.issue.user.login }}"
+run-name: "Individual evaluation of competitor ${{ github.event.issue.number }} from ${{ github.event.issue.user.login }}"
 
 on: 
   issue_comment:
@@ -20,7 +20,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: Individual re-evaluation in progress...
+          body: Individual evaluation in progress...
     outputs:
       comment-id: ${{ steps.feedback.outputs.comment-id }}
   record:
@@ -36,7 +36,7 @@ jobs:
           echo $solo_reference
           echo "INPUT_INDIVIDUAL_EVALUATION=$solo_reference" >> $GITHUB_ENV
 
-      - name: Record and update Benchmark animations
+      - name: Record and update benchmark animation
         id: webots_test
         uses: cyberbotics/benchmark-record-action@dockerContainers
         env:
@@ -49,7 +49,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ needs.feedback_message.outputs.comment-id }}
-          body: Re-evaluation finished! The leaderboard is up to date.
+          body: Evaluation finished! The leaderboard is up-to-date.
 
       - name: Feedback on failure
         if: ${{ steps.webots_test.outcome == 'failure' }}

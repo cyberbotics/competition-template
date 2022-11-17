@@ -26,5 +26,5 @@ jobs:
             --method POST -H "Accept: application/vnd.github+json" \
             /repos/${{ github.repository }}/labels \
             -f name='accepted' -f color='0E8A16' \
-            -f description='You have been subscribed to the benchmark' \
+            -f description='You have been registered to the benchmark' \
           

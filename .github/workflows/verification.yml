@@ -90,7 +90,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             There was a problem when checking your repository link.
-            It doesn't seem to be a benchmark repository.
+            It doesn't seem to be a benchmark repository because the webots.yml file is missing.
 
 # If there was any problem:
 
@@ -158,9 +158,9 @@ jobs:
             You have been added to the benchmark leaderboard.
 
             Please note that your leaderboard score is **not** automatically updated.
-            If you want to test the last version of your controller that is in your repo's main branch,
+            If you want to run the evaluation of the last version of your controller that is in your repo's main branch,
             add a new comment below containing the word "**run**".
 
-            If you want to unsubscribe your repository from the list, add a new comment below containing the word "**unsubscribe**".
+            If you want to unregister your repository from the list, add a new comment below containing the word "**unregister**".
 
             Please note that the commands might take a few minutes before posting feedback messages. You can refresh the page to make recent comments appear.

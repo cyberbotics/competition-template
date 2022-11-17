@@ -4,7 +4,7 @@ from controller import Robot
 import sys
 
 # Define the target motor position in radians.
-target = 0
+target = 1
 
 # Get pointer to the robot.
 robot = Robot()
@@ -18,6 +18,6 @@ robot.getDevice("motor.right").setPosition(target)
 
 # This is the simplest controller that works for this benchmark
 # If you want to experiment with more complex functions, you can read the programming guide here:
-#  https://www.cyberbotics.com/doc/guide/controller-programming?tab-language=python
+# https://www.cyberbotics.com/doc/guide/controller-programming?tab-language=python
 # or the Robot() documentation here:
-#  https://cyberbotics.com/doc/reference/robot?tab-language=python
+# https://cyberbotics.com/doc/reference/robot?tab-language=python

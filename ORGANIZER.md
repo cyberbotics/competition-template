@@ -67,6 +67,6 @@ Update the [README file](../../edit/main/README.md):
 
 You can now submit your benchmark to [webots.cloud](https://benchmark.webots.cloud/benchmark) to share it with other people. On the website, in the "Benchmark" tab, click on "Add a new benchmark" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).
 
-When you have submitted your benchmark to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your competitors will have a handy link to the leaderboard.
+When you have submitted your benchmark to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your competitors will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
 
 Finally, once you completed all the previous steps, you can delete this file and your benchmark should be good to go!

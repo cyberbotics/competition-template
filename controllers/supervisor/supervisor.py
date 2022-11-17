@@ -32,6 +32,6 @@ print(f"Benchmark complete! Your performance was {message.split(':')[3]}")
 # Performance output used by automated CI script
 CI = os.environ.get("CI")
 if CI:
-    print(f"performance_line:{percent}")
+    print(f"performance:{percent}")
 
 supervisor.simulationSetMode(Supervisor.SIMULATION_MODE_PAUSE)

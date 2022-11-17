@@ -44,12 +44,17 @@ jobs:
           INPUT_PUSH_TOKEN: ${{ github.token }}
         continue-on-error: true
 
+      - name: Get leaderboard link
+        if: ${{ steps.webots_test.outcome == 'success' }}
+        run: |
+          echo LEADERBOARD_LINK="$( grep -oP '\[!\[webots\.cloud - Benchmark\]\(.+\)\]\(\K.+(?=\))' README.md )" >> "$GITHUB_ENV"
+
       - name: Feedback on success
         if: ${{ steps.webots_test.outcome == 'success' }}
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ needs.feedback_message.outputs.comment-id }}
-          body: Evaluation finished! The leaderboard is up-to-date.
+          body: Evaluation finished! The [leaderboard](${{ env.LEADERBOARD_LINK }}) is up-to-date.
 
       - name: Feedback on failure
         if: ${{ steps.webots_test.outcome == 'failure' }}

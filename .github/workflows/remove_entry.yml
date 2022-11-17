@@ -27,7 +27,7 @@ jobs:
         run: |
           git config --global user.name '${{ github.repository_owner }}'
           git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
-          git commit -am "Removed competitor from benchmark"
+          git commit -am "Unregistered competitor from benchmark"
           git push
 
       - name: Remove all labels

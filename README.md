@@ -51,7 +51,7 @@ Write here a short description of your benchmark.
    1. Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
    1. Finally, click on the green button "Create repository from template".
 
-You should now be on your **own** repository page and not the benchmark creator's repo. The URL should look like this: "https://<i></i>github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME". If it is not the case, go to your repositories and click on the first one from the list. **This is important** in order to be able to use the links in the following chapters.
+You should now be on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following chapters.
 
 #### If you set your repository as private, add the organizer as collaborator
 

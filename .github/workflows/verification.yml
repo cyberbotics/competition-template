@@ -82,9 +82,7 @@ jobs:
         uses: cyberbotics/benchmark-record-action@dockerContainers
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
-          INPUT_FETCH_TOKEN: ${{ secrets.REPO_TOKEN }}
-          INPUT_PUSH_TOKEN: ${{ github.token }}
-          INPUT_PREVENT_PUSH: True
+          INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
         continue-on-error: true
 
       - name: If not a benchmark repo, feedback on registration issue

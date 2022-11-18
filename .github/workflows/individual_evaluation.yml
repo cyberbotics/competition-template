@@ -40,8 +40,8 @@ jobs:
         id: webots_test
         uses: cyberbotics/benchmark-record-action@dockerContainers
         env:
-          INPUT_FETCH_TOKEN: ${{ secrets.REPO_TOKEN }}
-          INPUT_PUSH_TOKEN: ${{ github.token }}
+          INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+          INPUT_ALLOW_PUSH: True
         continue-on-error: true
 
       - name: Get leaderboard link

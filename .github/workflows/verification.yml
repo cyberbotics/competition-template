@@ -79,7 +79,7 @@ jobs:
       - name: Is repo link a benchmark entry repo?
         if: ${{ steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success' }}
         id: benchmark_check
-        uses: cyberbotics/benchmark-record-action@dockerContainers
+        uses: cyberbotics/benchmark-record-action@main
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}

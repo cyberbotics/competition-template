@@ -38,7 +38,7 @@ jobs:
 
       - name: Record and update benchmark animation
         id: webots_test
-        uses: cyberbotics/benchmark-record-action@dockerContainers
+        uses: cyberbotics/benchmark-record-action@main
         env:
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           INPUT_ALLOW_PUSH: True

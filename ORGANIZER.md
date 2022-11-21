@@ -82,4 +82,4 @@ Finally, once you completed all the previous steps, you can delete this file and
 
 ### Sharing the benchmark
 
-To share the benchmark you can use the webots.cloud link which allows people to try the benchmark online or you can use directly the repository link.
+You can share the webots.cloud link which allows people to try the benchmark online and see the leaderboard or directly the repository link to get the registration instructions. A link to the repository will be also present on the webots.cloud site.

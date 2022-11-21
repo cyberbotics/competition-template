@@ -4,6 +4,7 @@ FROM cyberbotics/webots.cloud:R2022b
 # https://cyberbotics.com/doc/guide/running-extern-robot-controllers#remote-extern-controllers
 ENV PYTHONPATH=${WEBOTS_HOME}/lib/controller/python38
 ENV PYTHONIOENCODING=UTF-8
+ENV LD_LIBRARY_PATH=${WEBOTS_HOME}/lib/controller:${LD_LIBRARY_PATH}
 
 # Default internal docker ip, used to connect controller to Webots
 ENV WEBOTS_CONTROLLER_URL=tcp://172.17.0.1:3005

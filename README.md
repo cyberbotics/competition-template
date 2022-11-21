@@ -68,11 +68,19 @@ Click on the "Add people" and search for "ORGANIZER_NAME". When you found the or
 
 A series of automated actions will take place in a few seconds. If everything went well, you should get a message saying that you are successfully registered to the benchmark. If there was a problem, read the feedback message, fix what is wrong and post a "retry" comment on the registration issue to re-run the automated verification.
 
+This issue page is important, as it will allow you to post commands to interact with the evaluation bot, mainly to update your score with a **"run"** command. To save this link somewhere, you can edit this [README file](../../edit/main/README.md) and change the following line with your link:
+
+INSERT YOUR LINK HERE
+
+The available commands are:
+
+- "run": this will execute an automated test of your controller and update the leaderboard with its performance and the animation files.
+- "unregister": use this command if you want to unregister your controller from the leaderboard.
+
 ### Modify the template controller and/or create your own one
 
 Everything should be good to go, you can modify the main controller files in the controllers folder.
 
-The supervisor controller is the special controller that is used to evaluate your controller's performance.
-You should not modify it.
+The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated but changing it won't influence your final performance in the leaderboard.
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.

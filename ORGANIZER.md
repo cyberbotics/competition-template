@@ -17,10 +17,10 @@ You will then need to follow those steps (remember that you can open a link in a
 ### Webots files
 
 4. Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
-   - [worlds](worlds) for your Webots scenario
-   - [controllers](controllers) for your robot and supervisor controllers
-   - [plugins](plugins) for the HTML robot windows
-   - [protos](protos) if you need extra PROTOs
+   - [worlds](worlds): it's where your world file will go. In benchmarks only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 7.](#benchmark-specific-files)).
+   - [controllers](controllers): it's where your robot and supervisor controllers will go. In benchmarks, there is one robot controller that the participants will modify and one supervisor controller that will measure how well their controller performs.
+   - [plugins](plugins): here goes the files for the [HTML robot windows](https://www.cyberbotics.com/doc/reference/robot-window-plugin) and for a [physics plugin](https://www.cyberbotics.com/doc/reference/physics-plugin) if needed.
+   - [protos](protos): if you need extra [PROTOs](https://www.cyberbotics.com/doc/reference/proto), you can add them in this folder.
 
 5. Make sure that inside the world file the supervisor node has the "synchronization" field set to TRUE and the **Robot node** has its **"synchronization" field set to FALSE**.
    - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
@@ -45,8 +45,9 @@ The score unit depends on the [metric](#supported-metrics) used for the benchmar
    - metric: defines the metric used for the benchmark. Use one of the values defined in the [metric table](#supported-metrics).
    - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "edit_me" to the name of your main robot controller.
    1. Don't forget to commit your changes to save them.
-8. When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](DockerFile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the competitor. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker.
-   - The default webots.cloud Docker image already has the tools needed to compile and run C, C++ and Python controllers. However, if you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](DockerFile) as needed. Similarly, if competitors have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
+8. When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the competitor. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker.
+   - The default webots.cloud Docker image already has the tools needed to compile and run C, C++ and Python controllers but currently, the online tester can't compile C or C++ controllers for the participant's controller so only Python controllers are fully supported at the moment. The supervisor can still be in C or C++ if the make command is added to the Webots [Dockerfile](Dockerfile).
+   - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if competitors have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
 9. Replace the three files of the [preview folder](/preview) with an example animation of your benchmark [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.
 
 ### README update
@@ -55,7 +56,7 @@ Some sections from the README file are used to generate the webots.cloud benchma
 
 Update the [README file](../../edit/main/README.md):
 
-10. Change the title and the description section to describe your new scenario.
+10. Change the title and the description section to describe your new scenario. Make them the same as the title and description from the world file to avoid any inconsistencies between webots.cloud's listing and the repository's README.
 11. Update the different fields of the information section:
     - Difficulty: an idea of the benchmark's complexity (for example: Middle School, High School, Bachelor, Master, PhD...)
     - Robot: the name of the robot used in the benchmark
@@ -73,6 +74,12 @@ When you have submitted your benchmark to webots.cloud, change the link of the s
 
 ### Final test
 
-To see if your repository is correctly configured, copy the URL of your repository and [register it](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark) to itself. The registration should work without any errors. If that is not the case, check the actions logs for clues on how to solve the problem.
+The participants will register their controller by generating a personal repository from this one and submit it by posting an specially formatted issue on this repository.
+
+To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. Copy the URL of your repository and register it using the [issue form](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark). The registration should work without any errors. Check the actions logs carefully to see any errors and clues on how to solve them. Notably, there shouldn't be any "Controller timeout" at the end of the "Record and update benchmark animation" step which could be due to a crashing robot controller or not enough time for the default controller to finish the task.
 
 Finally, once you completed all the previous steps, you can delete this file and your benchmark should be good to go!
+
+### Sharing the benchmark
+
+To share the benchmark you can use the webots.cloud link which allows people to try the benchmark online or you can use directly the repository link.

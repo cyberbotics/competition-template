@@ -28,8 +28,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: Isolate repo link to env.USER_REPO
-        run: bash .github/repo_regex.sh "${{ github.event.issue.body }}" "${{ github.event.issue.user.login }}"
+      - name: Isolate repo link
+        run: |
+          repository=$(<<< "${{ github.event.issue.body }}" grep -Po 'github.com/[[[:alnum:]._-]+/\K[[:alnum:]._-]+' | sed -E 's/.git$//')
+          echo "USER_REPO=${{ github.event.issue.user.login }}/$repository" >> $GITHUB_ENV
         continue-on-error: true
 
 # First check | id: repo_check --N-> invites_check

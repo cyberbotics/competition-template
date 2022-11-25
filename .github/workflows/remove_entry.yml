@@ -1,5 +1,7 @@
 name: Unregister user when requested
 
+run-name: Unregister user when requested
+
 on:
   issue_comment:
     types: [created]

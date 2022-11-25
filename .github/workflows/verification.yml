@@ -6,6 +6,7 @@ on:
     types: [created]
 jobs:
   verify-competitor:
+    name: Verification of the given repository link
     if: > # Do the checks if there is a new registration or a 'retry' comment on a pending registration
       (
         join(github.event.issue.labels.*.name) == 'registration'
@@ -20,6 +21,7 @@ jobs:
       GH_TOKEN: ${{ secrets.REPO_TOKEN }}
     steps:
       - name: Verification started message
+        id: feedback
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -118,9 +120,9 @@ jobs:
         if: ${{ steps.if_error.outcome == 'success' }}
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: >
-            Please do the necessary to fix this problem.
+            There was a problem, please do the necessary to fix it.
             When you have finished solving the issue, please try again by commenting "retry"
 
 # Else everything is in order:
@@ -153,13 +155,14 @@ jobs:
       - name: Get leaderboard link
         if: ${{ steps.benchmark_check.outcome == 'success' }}
         run: |
-          echo LEADERBOARD_LINK="$( grep -oP '\[!\[webots\.cloud - Benchmark\]\(.+\)\]\(\K.+(?=\))' README.md )" >> "$GITHUB_ENV"
+          echo LEADERBOARD_LINK="$( grep -zoP '\[!\[webots\.cloud - Benchmark\]\(.+\)\]\([[:space:]*]\K.+(?=[[:space:]*]\))' README.md | tr -d '\0')" >> "$GITHUB_ENV"
 
       - name: Final feedback message
-        uses: peter-evans/close-issue@v1
+        uses: peter-evans/create-or-update-comment@v2.1.0
         if: ${{ steps.benchmark_check.outcome == 'success' }}
         with:
-          comment: |
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
+          body: |
             #### Here comes a new challenger!
             You have been added to the benchmark [leaderboard](${{ env.LEADERBOARD_LINK }}).
 

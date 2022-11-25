@@ -83,3 +83,10 @@ Finally, once you completed all the previous steps, you can delete this file and
 ### Sharing the benchmark
 
 You can share the webots.cloud link which allows people to try the benchmark online and see the leaderboard or directly the repository link to get the registration instructions. A link to the repository will be also present on the webots.cloud site.
+
+### Removing the benchmark from webots.cloud
+
+If you want to remove your benchmark from webots.cloud:
+
+- In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false
+- On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column. After a moment there should be message confirming that the benchmark was deleted from the database.

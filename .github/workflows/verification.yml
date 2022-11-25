@@ -163,6 +163,8 @@ jobs:
             #### Here comes a new challenger!
             You have been added to the benchmark [leaderboard](${{ env.LEADERBOARD_LINK }}).
 
+            **Save this page's URL** somewhere as this will be your "ChatOps" to update your leaderboard score.
+
             Please note that your leaderboard score is **not** automatically updated.
             If you want to run the evaluation of the last version of your controller that is in your repo's main branch,
             add a new comment below containing the word "**run**".

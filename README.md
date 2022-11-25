@@ -44,6 +44,12 @@ Write here a short description of your benchmark.
 
 ## How to participate
 
+### Summary
+
+- Create your own entry repository from this template.
+- If you set your repository as private, add this repository's creator as a collaborator.
+- Register your entry by posting an issue on this repository.
+
 ### Create your own entry repository from the template
 
 1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template":

@@ -43,7 +43,12 @@ jobs:
       - name: Get leaderboard link
         if: ${{ steps.webots_test.outcome == 'success' }}
         run: |
-          echo LEADERBOARD_LINK="$( grep -zoP '\[!\[webots\.cloud - Benchmark\]\(.+\)\]\([[:space:]*]\K.+(?=[[:space:]*]\))' README.md | tr -d '\0')" >> "$GITHUB_ENV"
+          echo LEADERBOARD_LINK="$( \
+            grep -zoP \
+              '\[!\[webots\.cloud - Benchmark\]\([^\)]*\)\]\([[:space:]]*\K[^[:space:]\)]+' \
+              README.md | \
+            tr -d '\0' \
+          )" >> "$GITHUB_ENV"
 
       - name: Feedback on success
         if: ${{ steps.webots_test.outcome == 'success' }}

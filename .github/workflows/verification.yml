@@ -155,7 +155,12 @@ jobs:
       - name: Get leaderboard link
         if: ${{ steps.benchmark_check.outcome == 'success' }}
         run: |
-          echo LEADERBOARD_LINK="$( grep -zoP '\[!\[webots\.cloud - Benchmark\]\(.+\)\]\([[:space:]*]\K.+(?=[[:space:]*]\))' README.md | tr -d '\0')" >> "$GITHUB_ENV"
+          echo LEADERBOARD_LINK="$( \
+            grep -zoP \
+              '\[!\[webots\.cloud - Benchmark\]\([^\)]*\)\]\([[:space:]]*\K[^[:space:]\)]+' \
+              README.md | \
+            tr -d '\0' \
+          )" >> "$GITHUB_ENV"
 
       - name: Final feedback message
         uses: peter-evans/create-or-update-comment@v2.1.0

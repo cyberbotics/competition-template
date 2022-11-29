@@ -44,6 +44,8 @@ Write here a short description of your benchmark.
 
 ## How to participate
 
+First of all, sign in to your GitHub account or [create one](https://github.com/signup) if you don't have any.
+
 ### Summary
 
 - Create your own entry repository from this template.
@@ -52,7 +54,7 @@ Write here a short description of your benchmark.
 
 ### Create your own entry repository from the template
 
-1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template":
+1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
    1. Fill the "Repository name" field with a name for your controller.
    1. Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
    1. Finally, click on the green button "Create repository from template".
@@ -90,3 +92,5 @@ Everything should be good to go, you can modify the main controller files in the
 The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated but changing it won't influence your final performance in the leaderboard.
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
+
+You can use a different name for your controller but if you do so, remember to change the [controller_Dockerfile](controller_Dockerfile#L17) accordingly to make it launch the correct controller.

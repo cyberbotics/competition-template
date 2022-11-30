@@ -13,7 +13,7 @@ jobs:
       contains(github.event.issue.labels.*.name, 'registration') &&
       contains(github.event.issue.labels.*.name, 'accepted') &&
       github.event.issue.user.login == github.event.comment.user.login &&
-      contains(github.event.comment.body, 'run')
+      github.event.comment.body == 'run'
     runs-on: ubuntu-latest
     steps:
       - name: Feedback on individual evaluation
@@ -32,16 +32,16 @@ jobs:
           echo $solo_reference
           echo "INPUT_INDIVIDUAL_EVALUATION=$solo_reference" >> $GITHUB_ENV
 
-      - name: Record and update benchmark animation
+      - name: Record and update benchmark animation and performance score
+        timeout-minutes: 10
         id: webots_test
         uses: cyberbotics/benchmark-record-action@main
         env:
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           INPUT_ALLOW_PUSH: True
-        continue-on-error: true
 
       - name: Get leaderboard link
-        if: ${{ steps.webots_test.outcome == 'success' }}
+        if: steps.webots_test.outcome == 'success'
         run: |
           echo LEADERBOARD_LINK="$( \
             grep -zoP \
@@ -51,14 +51,14 @@ jobs:
           )" >> "$GITHUB_ENV"
 
       - name: Feedback on success
-        if: ${{ steps.webots_test.outcome == 'success' }}
+        if: steps.webots_test.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: Evaluation finished! The [leaderboard](${{ env.LEADERBOARD_LINK }}) is up-to-date.
 
       - name: Feedback on failure
-        if: ${{ steps.webots_test.outcome == 'failure' }}
+        if: always() && ( steps.webots_test.outcome == 'failure' || steps.webots_test.outcome == 'cancelled' )
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
@@ -67,6 +67,7 @@ jobs:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Delete request comment
+        if: always()
         run: |
           gh api \
             --method DELETE \

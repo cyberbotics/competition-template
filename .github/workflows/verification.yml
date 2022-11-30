@@ -14,7 +14,7 @@ jobs:
         contains(github.event.issue.labels.*.name, 'registration') &&
         contains(github.event.issue.labels.*.name, 'pending') &&
         github.event.issue.user.login == github.event.comment.user.login &&
-        contains(github.event.comment.body, 'retry')
+        github.event.comment.body == 'retry'
       )
     runs-on: ubuntu-latest
     env:
@@ -34,7 +34,6 @@ jobs:
         run: |
           repository=$(<<< "${{ github.event.issue.body }}" grep -Po 'github.com/[[[:alnum:]._-]+/\K[[:alnum:]._-]+' | sed -E 's/.git$//')
           echo "USER_REPO=${{ github.event.issue.user.login }}/$repository" >> $GITHUB_ENV
-        continue-on-error: true
 
 # First check | id: repo_check --N-> invites_check
 
@@ -49,7 +48,7 @@ jobs:
 
       - name: If repo not visible, is there a collaboration invite?
 
-        if: ${{ steps.repo_check.outcome == 'failure' }}
+        if: steps.repo_check.outcome == 'failure'
         id: invites_check
         run: |
           invite_id=$( \
@@ -62,11 +61,10 @@ jobs:
             --method PATCH \
             -H "Accept: application/vnd.github+json" \
             /user/repository_invitations/$invite_id
-        continue-on-error: true
 
       - name: If no invites, problem with collab or link syntax
 
-        if: ${{ steps.invites_check.outcome == 'failure' }}
+        if: always() && steps.invites_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -77,21 +75,23 @@ jobs:
 # Second check | id: benchmark_check
 
       - name: Add competitor to file
-        if: ${{ steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success' }}
+
+        if: steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success'
         run: echo "${{ github.event.issue.number }}:$USER_REPO" >> competitors.txt
 
-      - name: Is repo link a benchmark entry repo?
-        if: ${{ steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success' }}
+      - name: Evaluation of the repository's controller
+
+        timeout-minutes: 10
+        if: steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success'
         id: benchmark_check
         uses: cyberbotics/benchmark-record-action@main
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-        continue-on-error: true
 
       - name: If not a benchmark repo, feedback on registration issue
 
-        if: ${{ steps.benchmark_check.outcome == 'failure' }}
+        if: always() && steps.benchmark_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -106,8 +106,10 @@ jobs:
 
         id: if_error
         if: >
-          steps.invites_check.outcome == 'failure' ||
-          steps.benchmark_check.outcome == 'failure'
+          always() && (
+            ( steps.invites_check.outcome == 'failure' || steps.benchmark_check.outcome == 'failure' ) ||
+            ( steps.invites_check.outcome == 'cancelled' || steps.benchmark_check.outcome == 'cancelled' )
+          )
         run: |
           gh api --silent \
             --method POST \
@@ -117,7 +119,7 @@ jobs:
 
       - name: Prompt on how to retry
 
-        if: ${{ steps.if_error.outcome == 'success' }}
+        if: always() && steps.if_error.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
@@ -129,7 +131,7 @@ jobs:
 
       - name: Everything is in order, add feedback label
 
-        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        if: steps.benchmark_check.outcome == 'success'
         run: |
           gh api --silent \
             --method POST \
@@ -144,7 +146,7 @@ jobs:
 
       - name: Push competitor list update + animations
 
-        if: ${{ steps.benchmark_check.outcome == 'success' }}      
+        if: steps.benchmark_check.outcome == 'success'      
         run: |
           git config --global user.name '${{ github.repository_owner }}'
           git config --global user.email '${{ github.repository_owner }}@users.noreply.github.com'
@@ -153,7 +155,7 @@ jobs:
           git push
 
       - name: Get leaderboard link
-        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        if: steps.benchmark_check.outcome == 'success'
         run: |
           echo LEADERBOARD_LINK="$( \
             grep -zoP \
@@ -164,7 +166,7 @@ jobs:
 
       - name: Final feedback message
         uses: peter-evans/create-or-update-comment@v2.1.0
-        if: ${{ steps.benchmark_check.outcome == 'success' }}
+        if: steps.benchmark_check.outcome == 'success'
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
@@ -175,8 +177,8 @@ jobs:
 
             Please note that your leaderboard score is **not** automatically updated.
             If you want to run the evaluation of the last version of your controller that is in your repo's main branch,
-            add a new comment below containing the word "**run**".
+            add a new comment below containing only the word "**run**".
 
-            If you want to unregister your repository from the list, add a new comment below containing the word "**unregister**".
+            If you want to unregister your repository from the list, add a new comment below containing only the word "**unregister**".
 
             Please note that the commands might take a few minutes before posting feedback messages. You can refresh the page to make recent comments appear.

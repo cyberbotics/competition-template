@@ -2,6 +2,8 @@
 
 Here are the instructions for somebody who wants to organize a robotics simulation benchmark. The links in the rest of the setup are relative to the repository where this file is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its `ORGANIZER.md` file to continue reading the instructions. If you get a 404 page it's probably because you are not connected to your GitHub account.
 
+Note that if you set your benchmark as private, you will need to add all your participants as collaborators before they can register (if you do so, you might want to protect your branches to prevent them from making any undesired changes to your files).
+
 You will then need to follow those steps (remember that you can open a link in a new tab by middle-clicking the link):
 
 ### GitHub settings
@@ -21,7 +23,7 @@ You will then need to follow those steps (remember that you can open a link in a
    - [plugins](plugins): here goes the files for the [HTML robot windows](https://www.cyberbotics.com/doc/reference/robot-window-plugin) and for a [physics plugin](https://www.cyberbotics.com/doc/reference/physics-plugin) if needed.
    - [protos](protos): if you need extra [PROTOs](https://www.cyberbotics.com/doc/reference/proto), you can add them in this folder.
    - [worlds](worlds): it's where your world file will go. In benchmarks only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 7.](#benchmark-specific-files)).
-      - Make sure that inside the world file the supervisor node has the "synchronization" field set to TRUE and the **Robot node** has its **"synchronization" field set to FALSE**.
+      - Make sure that inside your world file the **Robot node** of the robot controlled by the participants has its **"synchronization" field set to FALSE**.
       - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 
 6. In order for the automated script to recover the competitors' score correctly, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).

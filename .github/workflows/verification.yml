@@ -130,8 +130,7 @@ jobs:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
             ***
-            There was a problem, please do the necessary to fix it.
-            When you have finished solving the issue, please try again by posting a comment below containing only the word "retry"
+            There was a problem, please fix it and try again by posting a comment below containing only the word "retry"
 
 # Else everything is in order:
 
@@ -179,7 +178,7 @@ jobs:
             #### Here comes a new challenger!
             You have been added to the benchmark [leaderboard](${{ env.LEADERBOARD_LINK }}).
 
-            **Save this page's URL** somewhere as this will be your "ChatOps" to update your leaderboard score.
+            **Save this page's URL** as you will need it to run evaluations of your robot controller.
 
             Please note that your leaderboard score is **not** automatically updated.
             If you want to run the evaluation of the last version of your controller that is in your repo's main branch,

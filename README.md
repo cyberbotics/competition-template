@@ -48,11 +48,11 @@ First of all, sign in to your GitHub account or [create one](https://github.com/
 
 ### Summary
 
-- Create your own entry repository from this template.
+- Create your own participant repository from this template.
 - If you set your repository as private, add this repository's creator as a collaborator.
-- Register your entry by posting an issue on this repository.
+- Register your participation by posting an issue on this repository.
 
-### Create your own entry repository from the template
+### Create your own participant repository from the template
 
 1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
    1. Fill the "Repository name" field with a name for your controller.
@@ -89,7 +89,7 @@ The available commands are:
 
 Everything should be good to go, you can modify the main controller files in the controllers folder.
 
-The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated but changing it won't influence your final performance in the leaderboard.
+The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated.
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 

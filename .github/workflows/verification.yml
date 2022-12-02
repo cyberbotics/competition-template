@@ -64,13 +64,22 @@ jobs:
 
       - name: If no invites, problem with collab or link syntax
 
-        if: always() && steps.invites_check.outcome == 'failure'
+        if: failure() && steps.invites_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-            There was a problem when checking your repository "${{ env.USER_REPO }}".
-            You haven't added the organizer as a collaborator or there is a typo in the link.
+            ***
+            :warning: **The script can't access the files inside the repository "${{ env.USER_REPO }}".** :warning:
+            The reason could be that you haven't added the organizer as a collaborator or that there is a typo in the link.
+            You can edit your issue's text to correct your GitHub link
+      
+      - name: Create descriptive GitHub annotation
+
+        if: failure() && steps.invites_check.outcome == 'failure'
+        run: |
+          echo "::error ::The script can't access the files inside the repository \"${{ env.USER_REPO }}\""
+
 
 # Second check | id: benchmark_check
 
@@ -84,32 +93,28 @@ jobs:
         timeout-minutes: 10
         if: steps.repo_check.outcome == 'success' || steps.invites_check.outcome == 'success'
         id: benchmark_check
-        uses: cyberbotics/benchmark-record-action@main
+        uses: cyberbotics/benchmark-record-action@enhancement-clearer-error-messages
         env:
           INPUT_INDIVIDUAL_EVALUATION: "${{ github.event.issue.number }}:${{ env.USER_REPO }}"
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
 
       - name: If not a benchmark repo, feedback on registration issue
 
-        if: always() && steps.benchmark_check.outcome == 'failure'
+        if: failure() && steps.benchmark_check.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
-          issue-number: ${{ github.event.issue.number }}
+          comment-id: ${{ steps.feedback.outputs.comment-id }}
           body: |
-            There was a problem when checking your repository link.
-            The automated evaluation of your controller failed, your repository seems misconfigured. Look at the action logs for more details:
+            ***
+            :warning: **The automated evaluation of your controller failed** :warning:
+            Your repository seems misconfigured. Look at the action logs for more details:
             https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
 # If there was any problem:
 
       - name: Adding the "pending" label if there was any problem
 
-        id: if_error
-        if: >
-          always() && (
-            ( steps.invites_check.outcome == 'failure' || steps.benchmark_check.outcome == 'failure' ) ||
-            ( steps.invites_check.outcome == 'cancelled' || steps.benchmark_check.outcome == 'cancelled' )
-          )
+        if: failure() || cancelled()
         run: |
           gh api --silent \
             --method POST \
@@ -119,13 +124,14 @@ jobs:
 
       - name: Prompt on how to retry
 
-        if: always() && steps.if_error.outcome == 'success'
+        if: failure() || cancelled()
         uses: peter-evans/create-or-update-comment@v2.1.0
         with:
           comment-id: ${{ steps.feedback.outputs.comment-id }}
-          body: >
+          body: |
+            ***
             There was a problem, please do the necessary to fix it.
-            When you have finished solving the issue, please try again by commenting "retry"
+            When you have finished solving the issue, please try again by posting a comment below containing only the word "retry"
 
 # Else everything is in order:
 

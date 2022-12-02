@@ -77,7 +77,9 @@ When you have submitted your benchmark to webots.cloud, change the link of the s
 
 The participants will register their controller by generating a personal repository from this one and submit it by posting an specially formatted issue on this repository.
 
-To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. Copy the URL of your repository and register it using the [issue form](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark). The registration should work without any errors. Check the actions logs carefully to see any errors and clues on how to solve them. Notably, there shouldn't be any "Controller timeout" at the end of the "Record and update benchmark animation" step which could be due to a crashing robot controller or not enough time for the default controller to finish the task.
+To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. Copy the URL of your repository and register it using the [issue form](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark).
+
+If your benchmark is correctly configured, the registration should work without any errors. If there are any problems, read the action logs carefully for clues on how to solve them. There is a default timeout time of 10 minutes set inside the [verification.yml](./.github/workflows/verification.yml#L93) and [individual_evaluation.yml](./.github/workflows/individual_evaluation.yml#L36). Typical benchmarks usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the benchmark is very complex, a default timeout time too low that needs to be increased.
 
 Finally, once you completed all the previous steps, you can delete this file and your benchmark should be good to go!
 
@@ -89,5 +91,6 @@ You can share the webots.cloud link which allows people to try the benchmark onl
 
 If you want to remove your benchmark from webots.cloud:
 
-- In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false
-- On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column. After a moment there should be message confirming that the benchmark was deleted from the database.
+1. In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false
+2. On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column
+3. After a moment there should be message confirming that the benchmark was deleted from the database.

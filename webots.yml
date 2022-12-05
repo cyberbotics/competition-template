@@ -4,4 +4,5 @@ world:
   file: worlds/robot_programming.wbt
   max-duration: 30
   metric: percent
+  higher_is_better: true
 dockerCompose: theia:webots-project/controllers/edit_me/

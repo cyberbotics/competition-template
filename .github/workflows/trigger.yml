@@ -1,4 +1,6 @@
-name: triggers a run action on the repository of the organizer when the robot controller get modified on the main branch
+# Triggers a run action on the repository of the organizer when the robot controller get modified on the main branch
+
+name: Controller Evaluation
 
 on:
   push:

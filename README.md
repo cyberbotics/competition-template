@@ -1,6 +1,6 @@
 <span id="title">
 
-# Benchmark organizer template
+# Benchmark Organizer Template
 
 </span>
 
@@ -8,12 +8,12 @@
 [![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)](https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark)
 
 <!-- TODO: add examples when available
-## Benchmark examples
+## Benchmark Examples
 
 - <https://github.com/cyberbotics/robot-programming-benchmark-disabled>
 - <https://github.com/cyberbotics/inverted-pendulum-benchmark-disabled>
 -->
-## Organizer setup
+## Organizer Setup
 
 To organize your own benchmark, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file.
 
@@ -42,7 +42,7 @@ Write here a short description of your benchmark.
 
 ---
 
-## How to participate
+## How to Participate
 
 First of all, sign in to your GitHub account or [create one](https://github.com/signup) if you don't have any.
 
@@ -52,21 +52,25 @@ First of all, sign in to your GitHub account or [create one](https://github.com/
 - If you set your repository as private, add this repository's creator as a collaborator.
 - Push some modification on the main branch of your repository to automatically register and appear in the leader board.
 
-### Create your own participant repository from the template
+### Create your own Participant Repository from this Template
 
 1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
    1. Fill the "Repository name" field with a name for your controller.
    1. Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
    1. Finally, click on the green button "Create repository from template".
 
-You should now be on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following chapters.
+You should continue reading this document on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following sections.
 
-#### If you set your repository as private, add the organizer as collaborator
+#### If you set your Repository as Private, add the Organizer as a Collaborator
 
 1. [Click here](../../settings/access) to go to the "Collaborators" setting page
    1. You might need to confirm the access by re-entering your GitHub password.
 1. You should see a "Manage access" box where you will see the current collaborators of the repo.
 Click on the "Add people" and search for "ORGANIZER_NAME". When you found the organizer, add them to the repository.
+
+#### Create a Personal Access Token
+
+#### Set a Secret for your Repository
 
 ### Register by posting an issue
 

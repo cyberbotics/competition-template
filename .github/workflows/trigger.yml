@@ -1,7 +1,12 @@
-name: triggers a run action on the repository of the organizer
+name: triggers a run action on the repository of the organizer when the robot controller get modified on the main branch
 
 on:
   push:
+    branches:
+      - master
+    paths:
+      - controllers/edit_me/**
+
   workflow_dispatch:
 
 jobs:

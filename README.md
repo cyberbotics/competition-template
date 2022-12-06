@@ -70,7 +70,7 @@ Click on the "Add people" and search for "ORGANIZER_NAME". When you found the or
 
 ### 4. Modify the Robot Controller
 
-You can now modify the main robot controller files in the controllers folder and push the modification to the main branch of your repository.
+You can now modify the main robot [controller files](../../../../tree/main/controllers/edit_me) and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
 If everything went well, your repository should appear after some time in the leader board of the benchmark.
 If there was a problem, an issue will be open automatically on your repository by the organizer.

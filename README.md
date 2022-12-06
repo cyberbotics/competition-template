@@ -44,7 +44,7 @@ Write here a short description of your benchmark.
 
 ## How to Participate
 
-First of all, sign in to your GitHub account or [create one](https://github.com/signup) if you don't have any.
+First of all, [sign in](https://github.com/login) to your GitHub account or [create one](https://github.com/signup) if you don't have any.
 
 ### Summary
 

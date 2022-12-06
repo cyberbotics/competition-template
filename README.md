@@ -67,7 +67,7 @@ Click on the "Add people" and search for "ORGANIZER_NAME". When you found the or
 
 In order to allow your repository to automatically trigger evaluations of your robot controller when you push modifications to the main branch, you will have to setup a secret token:
 
-- [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name referring to the benchmark to remember what it is for and set its "Expiration" to six months or so. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "public_repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
+- [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name referring to the benchmark to remember what it is for and set its "Expiration" to six months or so. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "public_repo" scope box and scroll down to click on the "Generate token" button. Copy the generated code to your clipboard.
 - Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "TRIGGER_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
 
 ### 4. Modify your Robot Controller

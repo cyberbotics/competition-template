@@ -17,6 +17,6 @@ jobs:
     steps:
       - name: Create a repository dispatch event
         env:
-          GITHUB_TOKEN: ${{ secrets.REPOSITORY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
         run: |
           gh api repos/ORGANIZER_NAME/ORGANIZER_REPOSITORY/dispatches --raw-field event_type=run_trigger

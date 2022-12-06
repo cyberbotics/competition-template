@@ -50,7 +50,7 @@ First of all, sign in to your GitHub account or [create one](https://github.com/
 
 - Create your own participant repository from this template.
 - If you set your repository as private, add this repository's creator as a collaborator.
-- Register your participation by posting an issue on this repository.
+- Push some modification on the main branch of your repository to automatically register and appear in the leader board.
 
 ### Create your own participant repository from the template
 

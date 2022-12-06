@@ -59,7 +59,7 @@ First of all, [sign in](https://github.com/login) to your GitHub account or [cre
    - Set the visibility of your repository to "Private" unless you don't care about people looking at your code.
    - Finally, click on the green button "Create repository from template".
 
-You should continue reading this document on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following sections.
+You should continue reading this document on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following sections. Remember that you can open a link in a new tab by middle-clicking the link.
 
 #### If you set your Repository as Private, add the Organizer as a Collaborator
 

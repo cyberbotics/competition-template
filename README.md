@@ -84,8 +84,8 @@ You repository contains many folders and files. However, you should make modific
 
 ### Supervisor
 
-The supervisor controller is the special controller that is used to evaluate your controller's performance.
-You can look at its source code to understand more in detail how your controller will be evaluated.
+The [supervisor controller](../../blob/main/controllers/supervisor/supervisor.py) is a special controller that evaluates the performance of your robot controller.
+You should inspect its source code to understand more in detail how your controller will be evaluated.
 
 ### Webots
 

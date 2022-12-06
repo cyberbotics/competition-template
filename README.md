@@ -87,15 +87,15 @@ You repository contains many folders and files. However, you should make modific
 The supervisor controller is the special controller that is used to evaluate your controller's performance.
 You can look at its source code to understand more in detail how your controller will be evaluated.
 
-### Docker
-
-Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
-
-### Installing Webots Locally
+### Webots
 
 It is recommended to install [Webots](https://github.com/cyberbotics/webots/releases/latest) on your computer and to checkout your repository.
 This will allow you to work on the robot controller and test immediately your changes by running the world file in Webots.
 Once you are statisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
 
 *Note:* if you push your changes on a branch which is not the default branch of your repository, no evalution will be triggered.
+
+### Docker
+
+Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 

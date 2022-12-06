@@ -55,9 +55,9 @@ First of all, sign in to your GitHub account or [create one](https://github.com/
 ### Create your own Participant Repository from this Template
 
 1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
-  - Fill the "Repository name" field with a name for your controller.
-  - Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
-  - Finally, click on the green button "Create repository from template".
+   - Fill the "Repository name" field with a name for your controller.
+   - Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
+   - Finally, click on the green button "Create repository from template".
 
 You should continue reading this document on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following sections.
 

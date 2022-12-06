@@ -63,7 +63,7 @@ Update the [README file](../../edit/main/README.md):
     - Robot: the name of the robot used in the benchmark
     - Language: the programming language of the example controller
     - Commitment: an idea of the time required to complete the benchmark (a few minutes, a couple of hours, a couple of days...)
-12. Replace the occurrence of "ORGANIZER_NAME" in the [2. Add the Organizer as a Collaborator](../../edit/main/README.md#2-add-the-organizer-as-a-collaborator) section with your GitHub username.
+12. Replace the occurrence of "ORGANIZER_NAME" with your GitHub username in the "2. Add the Organizer as a Collaborator" subsection.
 13. Remove the "Organizer setup" section at the top of the file.
 14. Don't forget to commit your changes to save them.
 

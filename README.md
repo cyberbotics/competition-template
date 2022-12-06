@@ -70,7 +70,7 @@ Click on the "Add people" and search for "ORGANIZER_NAME". When you found the or
 
 ### 4. Modify the Robot Controller
 
-You can now modify the main robot [controller files](../../tree/main/controllers/edit_me) and push the modification to the main branch of your repository.
+You can now modify your [main robot controller file](../../blob/main/controllers/edit_me/edit_me.py) or create new files in this folder and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
 If everything went well, your repository should appear after some time in the leader board of the benchmark.
 If there was a problem, an issue will be open automatically on your repository by the organizer.
@@ -80,6 +80,6 @@ You will have to read it, fix what is wrong and push the changes to your main br
 
 The supervisor controller is the special controller that is used to evaluate your controller's performance.
 You can look at its source code to understand more in detail how your controller will be evaluated.
-However, you should make modifications only in the main robot controller directory, as only this directory is taken into consideration during the evaluation process, all the other files being taken from the benchmark organizer repository.
+However, you should make modifications only in [your robot controller directory](../../tree/main/controllers/edit_me), as only this directory is taken into consideration during the evaluation process, all the other files being taken from the benchmark organizer repository.
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.

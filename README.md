@@ -68,33 +68,18 @@ You should continue reading this document on your **own** repository page and no
 1. You should see a "Manage access" box where you will see the current collaborators of the repo.
 Click on the "Add people" and search for "ORGANIZER_NAME". When you found the organizer, add them to the repository.
 
-#### Create a Personal Access Token
+#### Register
 
-#### Set a Secret for your Repository
+1. [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name referring to the benchmark to remember what it is for and set its "Expiration" to six months or so. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
+1. Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
+1. Modify any file and push the modification to the main branch of your repository. A series of automated actions will take place in a few seconds. If everything went well, your repository should appear after some time in the leader board of the benchmark. If there was a problem, an issue will be open automatically on your repository by the organizer. You will have to read it, fix what is wrong and push the changes to your main branch to re-run the automated verification.
 
-### Register by posting an issue
+### Modify the Template Controller and/or Create your Own
 
-1. Go back to the main page of your repository if that is not the case and copy the repository URL from the address bar to your clipboard.
-1. [Click here](https://github.com/ORGANIZER_NAME/ORGANIZER_REPOSITORY/issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark) to go to the organizer repository and start your registration. If it doesn't work, you can do it manually by going to the organizer's repository, then to the "Issues" tab, creating a new issue and choosing "Registration to benchmark".
-1. Paste your repository URL in the URL field and click the "Submit new issue" button.
+Everything should be good to go, you can modify the main robot controller files in the controllers folder.
 
-A series of automated actions will take place in a few seconds. If everything went well, you should get a message saying that you are successfully registered to the benchmark. If there was a problem, read the feedback message, fix what is wrong and post a **"retry"** comment on the registration issue to re-run the automated verification.
-
-This issue page is important, as it will allow you to post commands to interact with the evaluation bot, mainly to update your score with a **"run"** command. To save this link somewhere, you can edit this [README file](../../edit/main/README.md) and change the following line with your link:
-
-INSERT YOUR LINK HERE
-
-The available commands are:
-
-- **"run"**: this will execute an automated test of your controller and update the leaderboard with its performance and the animation files.
-- **"unregister"**: use this command if you want to unregister your controller from the leaderboard.
-
-### Modify the template controller and/or create your own one
-
-Everything should be good to go, you can modify the main controller files in the controllers folder.
-
-The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated.
+The supervisor controller is the special controller that is used to evaluate your controller's performance.
+You can look at its source code to understand more in detail how your controller will be evaluated.
+However, you should make modifications only in the main robot controller directory, as only this directory is taken into consideration during the evaluation process, all the other files being taken from the benchmark organizer repository.
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
-
-You can use a different name for your controller but if you do so, remember to change the [controller_Dockerfile](controller_Dockerfile#L17) accordingly to make it launch the correct controller.

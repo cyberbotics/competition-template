@@ -89,6 +89,6 @@ You can share the webots.cloud link which allows people to try the benchmark onl
 
 If you want to remove your benchmark from webots.cloud:
 
-1. In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false
-2. On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column
+1. In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false or delete completely this repo.
+2. On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column.
 3. After a moment there should be message confirming that the benchmark was deleted from the database.

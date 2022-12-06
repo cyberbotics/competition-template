@@ -55,7 +55,7 @@ The score unit depends on the [metric](#supported-metrics) used for the benchmar
 
 Some sections from the README file are used to generate the webots.cloud benchmark page: the title, the description and an information table. Make sure to edit them while keeping them inside their respective \<span\> tags.
 
-Update the [README file](../../edit/main/README.md#L8):
+Update the [README file](../../edit/main/README.md):
 
 10. Change the title and the description section to describe your new scenario. Make them the same as the title and description from the world file to avoid any inconsistencies between webots.cloud's listing and the repository's README.
 11. Update the different fields of the information section:
@@ -69,7 +69,7 @@ Update the [README file](../../edit/main/README.md#L8):
 
 ### Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L3) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L10) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
 
 ### Webots.cloud submission
 

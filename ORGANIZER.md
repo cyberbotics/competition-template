@@ -67,6 +67,10 @@ Update the [README file](../../edit/main/README.md):
 13. Remove the "Organizer setup" section at the top of the file.
 14. Don't forget to commit your changes to save them.
 
+### Workflow Update
+
+Edit the [trigger.yml](../../edit/.github/workflows/trigger.yml#L3) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
+
 ### Webots.cloud submission
 
 You can now submit your benchmark to [webots.cloud](https://benchmark.webots.cloud/benchmark) to share it with other people. On the website, in the "Benchmark" tab, click on "Add a new benchmark" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).

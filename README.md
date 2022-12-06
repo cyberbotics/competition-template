@@ -95,6 +95,7 @@ Your controller is evaluated in a [Docker container](https://www.docker.com/reso
 
 It is recommended to install [Webots](https://github.com/cyberbotics/webots/releases/latest) on your computer and to checkout your repository.
 This will allow you to work on the robot controller and test immediately your changes by running the world file in Webots.
-Once you are statisfied with your changes, you can push them to github to trigger the evaluation of the new version of your robot controller.
-Note: if you push your changes on a branch which is not the default branch of your repository, no evalution will be triggered.
+Once you are statisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
+
+*Note:* if you push your changes on a branch which is not the default branch of your repository, no evalution will be triggered.
 

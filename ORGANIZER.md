@@ -63,13 +63,13 @@ Update the [README file](../../edit/main/README.md):
     - Robot: the name of the robot used in the benchmark
     - Language: the programming language of the example controller
     - Commitment: an idea of the time required to complete the benchmark (a few minutes, a couple of hours, a couple of days...)
-12. Replace the two occurrences of "ORGANIZER_NAME" in the "How to participate" section with your GitHub username and one "ORGANIZER_REPOSITORY" with your repository name.
+12. Replace the two occurrences of "ORGANIZER_NAME" in the [How to participate](../../edit/main/README.md#L33) section with your GitHub username and one "ORGANIZER_REPOSITORY" with your repository name.
 13. Remove the "Organizer setup" section at the top of the file.
 14. Don't forget to commit your changes to save them.
 
 ### Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L10) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
 
 ### Webots.cloud submission
 

@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
         run: |
-          curl -d "{\"event_type\": \"run_trigger"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/cyberbotics/wrestling/dispatches"
+          curl -d "{\"event_type\": \"run_trigger\"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/cyberbotics/wrestling/dispatches"
           # gh api repos/cyberbotics/wrestling/dispatches -f event_type=run_trigger -F client_payload=(fromJson('{"a": "x"}'))
           #-F client_payload=$env:GITHUB_REPOSITORY
           #gh api repos/cyberbotics/wrestling/dispatches --raw-field event_type=run_trigger $env:GITHUB_REPOSITORY

@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Create a repository dispatch event
         env:
-          GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
+          GH_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
         run: |
           gh api repos/cyberbotics/wrestling/dispatches --raw-field event_type=run_trigger
           #gh api repos/ORGANIZER_NAME/ORGANIZER_REPOSITORY/dispatches --raw-field event_type=run_trigger

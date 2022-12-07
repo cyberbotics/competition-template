@@ -4,7 +4,7 @@ from controller import Robot
 import sys
 
 # Define the target motor position in radians.
-target = 2
+target = 3
 
 # Get pointer to the robot.
 robot = Robot()

@@ -20,6 +20,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
         run: |
-          gh api repos/cyberbotics/wrestling/dispatches -f event_type=run_trigger -f name=$env:GITHUB_REPOSITORY
+          gh api repos/cyberbotics/wrestling/dispatches -f event_type=run_trigger -f client_payload="$env:GITHUB_REPOSITORY"
           #gh api repos/cyberbotics/wrestling/dispatches --raw-field event_type=run_trigger $env:GITHUB_REPOSITORY
           #gh api repos/ORGANIZER_NAME/ORGANIZER_REPOSITORY/dispatches -f event_type=run_trigger -F owner='{owner}' -F name='{repo}'

@@ -19,6 +19,7 @@ jobs:
       - name: Create a repository dispatch event
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
+          TRUC: $GITHUB_REPOSITORY
         run: |
-          echo ${GITHUB_REPOSITORY}
-          curl -d '{"event_type": "run_trigger", "client_payload": {"repository": "$GITHUB_REPOSITORY"}}' -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/cyberbotics/wrestling/dispatches"
+          echo $TRUC
+          curl -d '{"event_type": "run_trigger", "client_payload": {"repository": "'$TRUC'"}}' -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/cyberbotics/wrestling/dispatches"

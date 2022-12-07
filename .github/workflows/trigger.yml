@@ -19,4 +19,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
         run: |
-          gh api repos/ORGANIZER_NAME/ORGANIZER_REPOSITORY/dispatches --raw-field event_type=run_trigger
+          gh api repos/cyberbotics/benchmark-template/dispatches --raw-field event_type=run_trigger
+          #gh api repos/ORGANIZER_NAME/ORGANIZER_REPOSITORY/dispatches --raw-field event_type=run_trigger

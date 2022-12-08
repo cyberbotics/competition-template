@@ -7,8 +7,8 @@ on:
     branches:
       - feature-new-workflow
       #- master
-    # paths:
-      # - controllers/edit_me/**
+    #paths:
+      #- controllers/edit_me/**
 
   workflow_dispatch:
 

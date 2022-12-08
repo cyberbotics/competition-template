@@ -7,8 +7,8 @@ on:
     branches:
       - feature-new-workflow
       #- master
-    paths:
-      - controllers/edit_me/**
+    # paths:
+      # - controllers/edit_me/**
 
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
           TRUC: ${GITHUB_REPOSITORY}
-          PAYLOAD: '{"event_type": "run_trigger", "client_payload": {"truc": "${{ GITHUB_REPOSITORY }}"}}'
+          PAYLOAD: '{"event_type": "run_trigger", "client_payload": {"truc": "${{ env.GITHUB_REPOSITORY }}"}}'
         run: |
           echo $GITHUB_REPOSITORY
           echo $TRUC

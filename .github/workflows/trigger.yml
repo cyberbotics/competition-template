@@ -19,7 +19,7 @@ jobs:
       - name: Create a repository dispatch event
         env:
           GITHUB_TOKEN: ${{ secrets.TRIGGER_TOKEN }}
-          TRUC: ${GITHUB_REPOSITORY}
+          TRUC: ${{ env.GITHUB_REPOSITORY }}
           PAYLOAD: "{\"event_type\": \"run_trigger\", \"client_payload\": {\"truc\": \"${TRUC}\"}}"
         run: |
           echo $TRUC

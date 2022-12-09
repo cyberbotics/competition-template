@@ -5,7 +5,7 @@
 </span>
 
 <!-- This is the shield badge where you can replace the webots.cloud link in brackets with your personal webots.cloud page -->
-[![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)](https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark)
+[![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)][1]
 
 <!-- TODO: add examples when available
 ## Benchmark Examples
@@ -74,7 +74,7 @@ In order to allow your repository to automatically trigger evaluations of your r
 
 You can now modify your [main robot controller file](../../edit/main/controllers/edit_me/edit_me.py) or create new files in this folder and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
-If everything went well, your repository should appear after some time in the [leader board](https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark) of the benchmark.
+If everything went well, your repository should appear after some time in the [leader board][1] of the benchmark.
 If there was a problem, an [issue](../../issues) will be open automatically on your repository by the organizer.
 You will have to read it, fix what is wrong and push the changes to your main branch to re-run the automated verification.
 
@@ -100,4 +100,6 @@ Once you are statisfied with your changes, you can push them to GitHub to trigge
 ### Docker
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
+
+[1]: https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark "Leader Board"
 

@@ -69,7 +69,7 @@ Update the [README file](../../edit/main/README.md):
 
 ### Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "cyberbotics/benchmark-template" with your repository.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "cyberbotics/benchmark-template" with your own benchmark repository.
 
 ### Webots.cloud submission
 

@@ -69,7 +69,7 @@ Update the [README file](../../edit/main/README.md):
 
 ### Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_NAME" with your GitHub username and "ORGANIZER_REPOSITORY" with your repository name.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "cyberbotics/benchmark-template" with your repository.
 
 ### Webots.cloud submission
 

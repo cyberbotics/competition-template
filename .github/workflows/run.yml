@@ -1,0 +1,43 @@
+# run the evaluation of a robot controller and store the result in the competitors.txt file
+
+name: Run Evaluation
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+jobs:
+  evaluation:
+    name: Evaluation Requested by a Participant
+    if: >
+      startsWith(github.event.client_payload.repository, format('{0}/', github.event.sender.login)) ||
+      startsWith(github.event.client_payload.repository, format('{0}/', github.event.organization.login))
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Get Participant Repository ID
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
+          echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
+      - name: Checkout the Benchmark Repository
+        uses: actions/checkout@v3
+      - name: Record Animation and Update Performance
+        timeout-minutes: 10
+        id: webots_test
+        uses: cyberbotics/benchmark-record-action@main
+        env:
+          INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}', env.PARTICIPANT_REPO_ID, github.event.client_payload.repository) }}
+          INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+          INPUT_ALLOW_PUSH: True
+      - name: Feedback on Failure
+        if: failure() || cancelled()
+        uses: actions-ecosystem/action-create-issue@v1.0.0
+        with:
+          repo: ${{ github.event.client_payload.repository }}
+          github_token: ${{ secrets.REPO_TOKEN }}
+          title: Failure
+          body: |
+            There was a problem with your controller program.
+            Look at the [action logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
+          labels: bug

@@ -14,13 +14,13 @@ jobs:
       startsWith(github.event.client_payload.repository, format('{0}/', github.event.organization.login))
     runs-on: ubuntu-20.04
     steps:
-      - name: Dump event payload
+      - name: Get Participant Repository ID
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
           echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
-      - name: Check out the repo
+      - name: Checkout the Benchmark Repository
         uses: actions/checkout@v3
       - name: Record Animation and Update Performance
         timeout-minutes: 10

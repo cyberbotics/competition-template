@@ -13,8 +13,6 @@ You will then need to follow those steps (remember that you can open a link in a
 2. You will need to setup a GitHub secret to be able to fetch your competitors' controllers:
    1. [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    1. Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
-3. You will also need to add three custom labels for the automation scripts: "registration", "pending" and "accepted"
-   1. Go to the [Generate new labels action](../../actions/workflows/generate_labels.yml) page under the Actions tab. Click on "Run workflow" to create automatically the needed labels. It may take a few seconds to complete the workflow.
 
 ### Webots files
 
@@ -79,11 +77,11 @@ When you have submitted your benchmark to webots.cloud, change the link of the s
 
 ### Final test
 
-The participants will register their controller by generating a personal repository from this one and submit it by posting an specially formatted issue on this repository.
+The participants will register by creating a personal repository from this one and by pushing a modification of the robot controller to the main branch of their repository.
 
-To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. Copy the URL of your repository and register it using the [issue form](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark).
+To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. To do this, simply modify the default controller and push the modification on the main branch.
 
-If your benchmark is correctly configured, the registration should work without any errors. If there are any problems, read the action logs carefully for clues on how to solve them. There is a default timeout time of 10 minutes set inside the [verification.yml](./.github/workflows/verification.yml#L93) and [individual_evaluation.yml](./.github/workflows/individual_evaluation.yml#L36). Typical benchmarks usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the benchmark is very complex, a default timeout time too low that needs to be increased.
+If your benchmark is correctly configured, the registration should work without any errors. If there is any problem, an issue will be opened on your repository with a description of the problem. There is a default timeout time of 10 minutes set in the [run workflow](../edit/.github/workflows/run.yml:L22). Typical benchmarks usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the benchmark is very complex, a default timeout time too low that needs to be increased.
 
 Finally, once you completed all the previous steps, you can delete this file and your benchmark should be good to go!
 

@@ -5,10 +5,9 @@ name: Controller Evaluation
 on:
   push:
     branches:
-      - feature-new-workflow
-      #- master
-    #paths:
-      #- controllers/edit_me/**
+      - master
+    paths:
+      - controllers/**
 
   workflow_dispatch:
 

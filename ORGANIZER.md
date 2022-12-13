@@ -18,7 +18,7 @@ You will then need to follow those steps (remember that you can open a link in a
    - [controllers](controllers): it's where your robot and supervisor controllers will go. In benchmarks, there is one robot controller that the participants will modify and one supervisor controller that will measure how well their controller performs.
    - [plugins](plugins): here goes the files for the [HTML robot windows](https://www.cyberbotics.com/doc/reference/robot-window-plugin) and for a [physics plugin](https://www.cyberbotics.com/doc/reference/physics-plugin) if needed.
    - [protos](protos): if you need extra [PROTOs](https://www.cyberbotics.com/doc/reference/proto), you can add them in this folder.
-   - [worlds](worlds): it's where your world file will go. In benchmarks only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 7.](#benchmark-specific-files)).
+   - [worlds](worlds): it's where your world file will go. In benchmarks only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 3.](#3-benchmark-specific-files)).
       - Make sure that inside your world file the **Robot node** of the robot controlled by the participants has its **"synchronization" field set to FALSE**.
       - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 

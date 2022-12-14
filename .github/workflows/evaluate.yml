@@ -1,6 +1,6 @@
 # Run a controller evaluation when the robot controller get modified on the main branch
 
-name: Controller Evaluation
+name: Robot Controller Evaluation
 
 on:
   push:

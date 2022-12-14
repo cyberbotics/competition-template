@@ -1,6 +1,6 @@
 # Triggers a run action on the repository of the organizer when the robot controller get modified on the main branch
 
-name: Controller Evaluation
+name: Trigger Evaluation
 
 on:
   push:

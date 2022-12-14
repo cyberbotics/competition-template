@@ -1,0 +1,24 @@
+# Run a controller evaluation when the robot controller get modified on the main branch
+
+name: Controller Evaluation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - controllers/**
+
+  workflow_dispatch:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - id: evaluation
+        uses: cyberbotics/benchmark-template
+        with:
+          repository: ${{ github.repository }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      

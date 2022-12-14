@@ -16,8 +16,8 @@ runs:
     - name: 'Checking out the participant repository'
       uses: actions/checkout@v3
       with:
-        - repository: ${{ inputs.repository }}
-        - token: ${{ inputs.repo.token }}
-        - path: 'participant'
+        repository: ${{ inputs.repository }}
+        token: ${{ inputs.repo.token }}
+        path: 'participant'
     - run: echo "Hello World!"
       shell: bash

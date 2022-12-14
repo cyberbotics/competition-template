@@ -1,8 +1,23 @@
 name: 'Evaluation Action'
 description: 'Run the benchmark with the robot controller of a participant to evaluate its performance'
+inputs:
+  repository:
+    description: Participant repository containing the robot controller
+    required: true
+  repo-token:
+    description: GitHub token of the participant repository
+    required: true
 
 runs:
   using: 'composite'
   steps:
+    - name: 'Checking out the organizer repository'
+      uses: actions/checkout@v3
+    - name: 'Checking out the participant repository'
+      uses: actions/checkout@v3
+      with:
+        - repository: ${{ inputs.repository }}
+        - token: ${{ inputs.repo.token }}
+        - path: 'participant'
     - run: echo "Hello World!"
       shell: bash

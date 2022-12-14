@@ -15,12 +15,10 @@ jobs:
   evaluate:
     runs-on: ubuntu-22.04
     steps:
-      - name: 'Checking out robot controller repository'
-        uses: actions/checkout@v3
       - name: 'Evaluating robot controller performance'
         id: evaluation
         uses: cyberbotics/benchmark-template@main
         with:
           repository: ${{ github.repository }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ github.token }}
       

@@ -13,11 +13,31 @@ runs:
   steps:
     - name: 'Checking out the organizer repository'
       uses: actions/checkout@v3
-    - name: 'Checking out the participant repository'
-      uses: actions/checkout@v3
-      with:
-        repository: ${{ inputs.repository }}
-        token: ${{ inputs.repo-token }}
-        path: 'participant'
-    - run: python3 -u evaluation.py
-      shell: bash
+    - name: Record Animation and Update Performance
+      timeout-minutes: 10
+      id: webots_test
+      uses: cyberbotics/benchmark-record-action@main
+      env:
+        INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}', env.PARTICIPANT_REPO_ID, inputs.repository) }}
+        INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+        INPUT_ALLOW_PUSH: True
+    # - name: 'Checking out the participant repository'
+    #   uses: actions/checkout@v3
+    #   with:
+    #     repository: ${{ inputs.repository }}
+    #     token: ${{ inputs.repo-token }}
+    #     path: 'participant'
+    # - run: python3 -u evaluation.py
+    #   shell: bash
+
+    # - name: Feedback on Failure
+    #   if: failure() || cancelled()
+    #   uses: actions-ecosystem/action-create-issue@v1.0.0
+    #   with:
+    #     repo: ${{ inputs.repository }}
+    #     github_token: ${{ inputs.repo-token }}
+    #     title: Failure
+    #     body: |
+    #       There was a problem with your controller program.
+    #       Look at the [action logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
+    #     labels: bug

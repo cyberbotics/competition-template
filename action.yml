@@ -22,7 +22,7 @@ runs:
         echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
         echo "participant repository: ${{ inputs.repository }}"
     - name: Record Animation and Update Performance
-      timeout-minutes: 10
+      # timeout-minutes: 10
       id: webots_test
       uses: cyberbotics/benchmark-record-action@main
       env:

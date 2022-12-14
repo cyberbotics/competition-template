@@ -1,0 +1,8 @@
+name: 'Evaluation Action'
+description: 'Run the benchmark with the robot controller of a participant to evaluate its performance'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: echo "Hello World!"
+      shell: bash

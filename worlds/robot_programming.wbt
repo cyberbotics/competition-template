@@ -7,11 +7,11 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/project
 
 WorldInfo {
   info [
-    "Benchmark objective: "
+    "Competition objective: "
     "learn how to program a robot."
   ]
   title "Container Robot Programming"
-  window "robot_programming_benchmark"
+  window "robot_programming_competition"
   basicTimeStep 20
   contactProperties [
     ContactProperties {
@@ -33,14 +33,14 @@ TexturedBackgroundLight {
 CircleArena {
   wallThickness 0.05
 }
-DEF BENCHMARK_ROBOT Thymio2 {
+DEF COMPETITION_ROBOT Thymio2 {
   rotation 0 0 1 3.14159
   controller "edit_me"
   controllerArgs []
   window "<none>"
   synchronization FALSE
 }
-DEF BENCHMARK_SUPERVISOR Robot {
+DEF COMPETITION_SUPERVISOR Robot {
   children [
     Emitter {
       channel 1024
@@ -48,7 +48,7 @@ DEF BENCHMARK_SUPERVISOR Robot {
   ]
   controller "supervisor"
   supervisor TRUE
-  window "robot_programming_benchmark"
+  window "robot_programming_competition"
 }
 Transform {
   translation -0.25 0 0

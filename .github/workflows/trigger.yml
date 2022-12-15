@@ -18,4 +18,4 @@ jobs:
     steps:
       - name: Send a repository dispatch event from the webots-cloud GitHub user
         run: |
-          curl "https://webots.cloud/benchmark.php?organizer=cyberbotics/benchmark-template&participant=${{ github.repository }}"
+          curl "https://webots.cloud/run_competition.php?organizer=cyberbotics/benchmark-template&participant=${{ github.repository }}"

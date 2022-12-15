@@ -94,5 +94,5 @@ Once you are statisfied with your changes, you can push them to GitHub to trigge
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 
-[1]: https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fcompetition-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark "Leader Board"
+[1]: https://competition.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fcompetition-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leader Board"
 

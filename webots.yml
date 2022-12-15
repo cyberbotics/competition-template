@@ -1,5 +1,5 @@
 publish: true
-type: benchmark
+type: competition
 world:
   file: worlds/robot_programming.wbt
   max-duration: 30

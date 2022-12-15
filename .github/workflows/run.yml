@@ -18,12 +18,31 @@ jobs:
           repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
           echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
           echo "participant repository: ${{ github.event.client_payload.repository }}"
-      - name: Checkout the Benchmark Repository
+      - name: Is repo link actually a repo?
+        id: repo_check
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: |
+          gh api --silent -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }}
+        continue-on-error: true
+      - name: If repo not visible, is there a collaboration invite?
+        if: steps.repo_check.outcome == 'failure'
+        id: invites_check
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: |
+          invite_id=$( \
+            gh api -H "Accept: application/vnd.github+json" \
+              /user/repository_invitations | jq '.[] | select(.repository.full_name=="${{ github.event.client_payload.repository }}") | .id' \
+          )
+          echo $invite_id
+          gh api --silent --method PATCH -H "Accept: application/vnd.github+json" /user/repository_invitations/$invite_id
+      - name: Checkout the Organizer Repository
         uses: actions/checkout@v3
       - name: Record Animation and Update Performance
         timeout-minutes: 10
         id: webots_test
-        uses: cyberbotics/benchmark-record-action@main
+        uses: cyberbotics/competition-record-action@main
         env:
           INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}', env.PARTICIPANT_REPO_ID, github.event.client_payload.repository) }}
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
@@ -33,7 +52,7 @@ jobs:
         uses: actions-ecosystem/action-create-issue@v1.0.0
         with:
           repo: ${{ github.event.client_payload.repository }}
-          github_token: ${{ secrets.REPO_TOKEN }}
+          github_token: ${{ github.token }}
           title: Failure
           body: |
             There was a problem with your controller program.

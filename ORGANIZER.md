@@ -7,8 +7,8 @@ You will then need to follow those steps (remember that you can open a link in a
 ### 1. GitHub Settings
 
 - Go to the [Settings tab](../../settings):
-   - Under the General section, tick the "Template repository" box so that the competitors can easily make a copy of the simulation files.
-- You will need to setup a GitHub secret to be able to fetch your competitors' controllers:
+   - Under the General section, tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
+- You will need to setup a GitHub secret to be able to fetch the controllers of your participants:
    - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    - Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
 
@@ -22,7 +22,7 @@ You will then need to follow those steps (remember that you can open a link in a
       - Make sure that inside your world file the **Robot node** of the robot controlled by the participants has its **"synchronization" field set to FALSE**.
       - Note that on [webots.cloud](https://webots.cloud), the listing title of the competition and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 
-- In order for the automated script to recover the competitors' score correctly, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).
+- In order for the automated script to recover the score of participants correctly, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).
 The score unit depends on the [metric](#supported-metrics) used for the competition which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
 
 #### Supported Metrics
@@ -42,9 +42,9 @@ The score unit depends on the [metric](#supported-metrics) used for the competit
    - metric: defines the metric used for the competition. Use one of the values defined in the [metric table](#supported-metrics).
    - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "edit_me" to the name of your main robot controller.
    - Don't forget to commit your changes to save them.
-- When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the competitor. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker. This is done to allow users to freely add dependencies if needed and to prevent any kind of cheating during the automated evaluation.
+- When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the participant. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker. This is done to allow users to freely add dependencies if needed and to prevent any kind of cheating during the automated evaluation.
    - The default webots.cloud Docker image already has the tools needed to compile and run C, C++ and Python controllers but currently, the online tester can't compile C or C++ controllers for the participant's controller so only Python controllers are fully supported at the moment. The supervisor can still be in C or C++ if the make command is added to the Webots [Dockerfile](Dockerfile).
-   - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if competitors have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
+   - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if participants have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
 - Replace the three files of the [preview folder](/preview) with an example animation of your competition [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.
 
 ### 4. README Update
@@ -71,7 +71,7 @@ Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and re
 
 You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).
 
-When you have submitted your competition to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your competitors will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
+When you have submitted your competition to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your participants will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
 
 ### 7. Final Test
 

@@ -5,8 +5,7 @@ name: Trigger Evaluation
 on:
   push:
     branches:
-      #- main
-      - disabled
+      - main
     paths:
       - controllers/**
 
@@ -14,8 +13,8 @@ on:
 
 jobs:
   trigger:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Send a repository dispatch event from the webots-cloud GitHub user
+      - name: Send a repository dispatch event
         run: |
-          curl "https://webots.cloud/run_competition.php?organizer=cyberbotics/benchmark-template&participant=${{ github.repository }}"
+          curl -s -X POST -F 'organizer=OWNER/REPOSITORY' -F'participant=${{ github.repository }}' -F'token=${{ github.token }}' https://webots.cloud/run_competition.php

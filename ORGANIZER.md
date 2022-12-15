@@ -1,6 +1,6 @@
 ## Organizer Setup
 
-Here are the instructions for somebody who wants to organize a robotics simulation benchmark. The links in the rest of the setup are relative to the repository where this file is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its `ORGANIZER.md` file to continue reading the instructions. If you get a 404 page it's probably because you are not connected to your GitHub account. We recommend that you create a public repository otherwise you will need to add all your participants as collaborators.
+Here are the instructions for somebody who wants to organize a robotics simulation competition. The links in the rest of the setup are relative to the repository where this file is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its `ORGANIZER.md` file to continue reading the instructions. If you get a 404 page it's probably because you are not connected to your GitHub account. We recommend that you create a public repository otherwise you will need to add all your participants as collaborators.
 
 You will then need to follow those steps (remember that you can open a link in a new tab by middle-clicking the link):
 

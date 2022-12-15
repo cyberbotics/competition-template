@@ -1,4 +1,4 @@
-# run the evaluation of a robot controller and store the result in the competitors.txt file
+# run the evaluation of a robot controller and store the result in the participants.txt file
 
 name: Run Evaluation
 

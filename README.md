@@ -1,21 +1,21 @@
 <span id="title">
 
-# Benchmark Organizer Template
+# Competition Organizer Template
 
 </span>
 
 <!-- This is the shield badge where you can replace the webots.cloud link in brackets with your personal webots.cloud page -->
-[![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)][1]
+[![webots.cloud - Competition](https://img.shields.io/badge/webots.cloud-Competition-007ACC)][1]
 
 <!-- TODO: add examples when available
-## Benchmark Examples
+## Competition Examples
 
-- <https://github.com/cyberbotics/robot-programming-benchmark-disabled>
-- <https://github.com/cyberbotics/inverted-pendulum-benchmark-disabled>
+- <https://github.com/cyberbotics/robot-programming-competition-disabled>
+- <https://github.com/cyberbotics/inverted-pendulum-competition-disabled>
 -->
 ## Organizer Setup
 
-To organize your own benchmark, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file.
+To organize your own competition, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file.
 
 ---
 
@@ -23,7 +23,7 @@ To organize your own benchmark, follow the instructions in the [ORGANIZER.md](..
 
 <span id="description">
 
-Write here a short description of your benchmark.
+Write here a short description of your competition.
 
 </span>
 
@@ -36,7 +36,7 @@ Write here a short description of your benchmark.
 - Difficulty: Middle School, High School, Bachelor, Master or PhD
 - Robot: robot name
 - Language: programming language of the controller template
-- Commitment: amount of time needed to finish the benchmark
+- Commitment: amount of time needed to participate in the competition
 
 </span>
 
@@ -53,7 +53,7 @@ If not already done, [sign in](https://github.com/login) to your GitHub account 
 - Set the visibility of your repository to "Private" unless you don't care about people looking at your code.
 - Finally, click on the green button "Create repository from template".
 
-You should continue reading this document on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following sections. Remember that you can open a link in a new tab by middle-clicking the link.
+You should continue reading this document on your **own** repository page and not the one of the competition organizer. **This is important** in order to be able to use the links in the following sections. Remember that you can open a link in a new tab by middle-clicking the link.
 
 ### 2. Add the Organizer as a Collaborator
 
@@ -67,7 +67,7 @@ Click on the "Add people" and search for "ORGANIZER_NAME". When you found the or
 
 You can now modify your [main robot controller file](../../edit/main/controllers/edit_me/edit_me.py) or create new files in this folder and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
-If everything went well, your repository should appear after some time in the [leader board][1] of the benchmark.
+If everything went well, your repository should appear after some time in the [leader board][1] of the competition.
 If there was a problem, an [issue](../../issues) will be open automatically on your repository by the organizer.
 You will have to read it, fix what is wrong and push the changes to your main branch to re-run the automated verification.
 
@@ -75,7 +75,7 @@ You will have to read it, fix what is wrong and push the changes to your main br
 
 ### Repository Structure
 
-You repository contains many folders and files. However, you should make modifications only in [your robot controller directory](../../tree/main/controllers/edit_me), as only this directory is taken into consideration during the evaluation process, all the other files being taken from the benchmark organizer repository.
+You repository contains many folders and files. However, you should make modifications only in [your robot controller directory](../../tree/main/controllers/edit_me), as only this directory is taken into consideration during the evaluation process, all the other files being taken from the competition organizer repository.
 
 ### Supervisor
 
@@ -94,5 +94,5 @@ Once you are statisfied with your changes, you can push them to GitHub to trigge
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 
-[1]: https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark "Leader Board"
+[1]: https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fcompetition-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark "Leader Board"
 

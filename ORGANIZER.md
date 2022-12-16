@@ -75,7 +75,7 @@ Update the [README file](../../edit/main/README.md):
 
 ### 6. Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "cyberbotics/competition-template" with your own competition repository.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "OWNER/REPOSITORY" with your own competition repository.
 
 ### 7. Submission to webots.cloud
 

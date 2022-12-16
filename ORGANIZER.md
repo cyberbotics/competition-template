@@ -69,13 +69,13 @@ Update the [README file](../../edit/main/README.md):
     - Robot: the name of the robot used in the competition
     - Language: the programming language of the example controller
     - Commitment: an idea of the time required to participate in the competition (a few minutes, a couple of hours, a couple of days, a couple of months...)
-- Replace the occurrence of "ORGANIZER_NAME" with your own GitHub username in the subsection "2. Add the Organizer as a Collaborator".
+- Replace the occurrence of "ORGANIZER_USERNAME" with your own GitHub username in the subsection "2. Add the Organizer as a Collaborator".
 - Remove the "Organizer setup" section at the top of the file.
 - Don't forget to commit your changes to save them.
 
 ### 6. Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "OWNER/REPOSITORY" with your own competition repository, e.g., your GitHub username and your repository name.
+Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_USERNAME/REPOSITORY" with your own competition repository, e.g., your GitHub username and your repository name.
 
 ### 7. Submission to webots.cloud
 

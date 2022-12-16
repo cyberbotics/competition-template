@@ -21,7 +21,7 @@ There is no need to include all branches.
 - You will need to setup a GitHub secret to be able to fetch the controllers of your participants:
    - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the competition. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    - Go to the [secrets settings](../../settings/secrets/actions/new) of your repository to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
-- You will need to add [webots-cloud](https://github.com/webots-cloud) as a collaborator on your organizer repository, so that webots-cloud can start workflows on your repository when participants push changes to their controllers:
+- You will need to add [webots-cloud](https://github.com/webots-cloud) as a collaborator on your organizer repository, so that webots-cloud can start the [run workflow](.github/workflows/run.yml#L6) on your repository when participants push changes to their controllers:
    - [Click here](../../settings/access) to go to the "Collaborators" setting page.
    - You should see a "Manage access" box where you will see the current collaborators of the repo.
      Click on the "Add people", search for "webots-cloud" and add it to the repository.

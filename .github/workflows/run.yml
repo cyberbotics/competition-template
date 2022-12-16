@@ -11,13 +11,6 @@ jobs:
     name: Evaluation Requested by a Participant
     runs-on: ubuntu-20.04
     steps:
-      - name: Get Participant Repository ID
-        env:
-          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
-        run: |
-          repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
-          echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
-          echo "participant repository: ${{ github.event.client_payload.repository }}"
       - name: Is repo link actually a repo?
         id: repo_check
         env:
@@ -37,6 +30,13 @@ jobs:
           )
           echo $invite_id
           gh api --silent --method PATCH -H "Accept: application/vnd.github+json" /user/repository_invitations/$invite_id
+      - name: Get Participant Repository ID
+        env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+        run: |
+          repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
+          echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
+          echo "participant repository: ${{ github.event.client_payload.repository }}"
       - name: Checkout the Organizer Repository
         uses: actions/checkout@v3
       - name: Record Animation and Update Performance

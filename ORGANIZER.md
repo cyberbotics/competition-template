@@ -3,7 +3,7 @@
 Here are the instructions to organize your own simulation-based robot competition.
 You will have to create and configure your own GitHub repository hosting your competition.
 Then, you should register it at [webots.cloud](https://webots.cloud/competition) to start accepting participants and actually run the competition.
-To proceed, simply follow those steps and remember that you can open a link in a new tab by middle-clicking the link.
+To proceed, simply follow the following steps and remember that you can open a link in a new tab by middle-clicking the link.
 
 ### 1. Create your own repository from this template
 

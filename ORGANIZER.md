@@ -1,10 +1,21 @@
 ## Organizer Setup
 
-Here are the instructions for somebody who wants to organize a robotics simulation competition. The links in the rest of the setup are relative to the repository where this file is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its `ORGANIZER.md` file to continue reading the instructions. If you get a 404 page it's probably because you are not connected to your GitHub account. We recommend that you create a public repository otherwise you will need to add all your participants as collaborators.
+Here are the instructions to organize your own simulation-based robot competition.
+You will have to create and configure your own GitHub repository hosting your competition.
+Then, you should register it at [webots.cloud](https://webots.cloud/competition) to start accepting participants and actually run the competition.
+To proceed, simply follow those steps and remember that you can open a link in a new tab by middle-clicking the link.
 
-You will then need to follow those steps (remember that you can open a link in a new tab by middle-clicking the link):
+### 1. Create your own repository from this template
 
-### 1. GitHub Settings
+Your competition will be hosted on your own GitHub repository that you should [create now from this template](../../generate).
+If you get a 404 page it's probably because you are not connected to your GitHub account.
+On the repository creation page, provide a name and a description for your competition repository.
+We recomment to leave it public, so that participants will be able to easily access it.
+There is no need to include all branches.
+
+**Important: Once created, you should continue reading this ORGANIZER.md file on your own repository, so that the hyperlinks included in this file will point to your own repository files.**
+
+### 2. GitHub Settings
 
 - Go to the [Settings tab](../../settings):
    - Under the General section, tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
@@ -12,7 +23,7 @@ You will then need to follow those steps (remember that you can open a link in a
    - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    - Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
 
-### 2. Webots Files
+### 3. Webots Files
 
 - Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
    - [controllers](controllers): it's where your robot and supervisor controllers will go. In competitions, there is at least one robot controller that the participants will modify and one supervisor controller that will measure how well their controller performs.
@@ -34,7 +45,7 @@ The score unit depends on the [metric](#supported-metrics) used for the competit
 | time-duration | ranks users based on how long they manage to perform a task (e.g., to maintain an inverted pendulum upright) | a time in seconds       |
 | distance      | ranks users based on how far they manage to move something (including themselves)           | a distance in meters    |
 
-### 3. Competition Specific Files
+### 4. Competition Specific Files
 
 - Update the parameters inside [webots.yml](../../edit/main/webots.yml):
    - file: set the relative path to your world file.
@@ -47,7 +58,7 @@ The score unit depends on the [metric](#supported-metrics) used for the competit
    - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if participants have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
 - Replace the three files of the [preview folder](/preview) with an example animation of your competition [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.
 
-### 4. README Update
+### 5. README Update
 
 Some sections from the README file are used to generate the webots.cloud competition page: the title, the description and an information table. Make sure to edit them while keeping them inside their respective \<span\> tags.
 
@@ -63,17 +74,17 @@ Update the [README file](../../edit/main/README.md):
 - Remove the "Organizer setup" section at the top of the file.
 - Don't forget to commit your changes to save them.
 
-### 5. Workflow Update
+### 6. Workflow Update
 
 Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "cyberbotics/competition-template" with your own competition repository.
 
-### 6. Submission to webots.cloud
+### 7. Submission to webots.cloud
 
 You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).
 
 When you have submitted your competition to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your participants will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
 
-### 7. Final Test
+### 8. Final Test
 
 The participants will register by creating a personal repository from this one and by pushing a modification of the robot controller to the main branch of their repository.
 
@@ -83,11 +94,11 @@ If your competition is correctly configured, the registration should work withou
 
 Finally, once you completed all the previous steps, you can delete this file and your competition should be live!
 
-### 8. Sharing the Competition
+### 9. Sharing the Competition
 
 You can share the [webots.cloud](https://webots.cloud) link which allows people to try the competition online and see the leaderboard or directly the repository link to get the registration instructions. A link to the repository will be also present on the [webots.cloud](https://webots.cloud/competition) site.
 
-### 9. Removing the Competition from webots.cloud
+### 10. Removing the Competition from webots.cloud
 
 If you want to remove your competition from webots.cloud:
 

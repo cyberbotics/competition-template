@@ -79,7 +79,7 @@ Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and re
 
 ### 7. Submission to webots.cloud
 
-You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).
+You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/) in the form `https://github.com/omichel/my-competition/blob/main/worlds/robot_programming.wbt`.
 
 When you have submitted your competition to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your participants will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
 

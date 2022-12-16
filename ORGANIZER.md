@@ -17,8 +17,7 @@ There is no need to include all branches.
 
 ### 2. GitHub Settings
 
-- Go to the [Settings tab](../../settings):
-   - Under the General section, tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
+- Under the General section of the [Settings tab](../../settings), tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
 - You will need to setup a GitHub secret to be able to fetch the controllers of your participants:
    - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    - Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.

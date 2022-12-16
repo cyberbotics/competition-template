@@ -77,7 +77,7 @@ Update the [README file](../../edit/main/README.md):
 
 ### 6. Workflow Update
 
-Edit the [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_USERNAME/ORGANIZER_REPOSITORY" with your own competition repository, e.g., your GitHub username and your repository name.
+Edit [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_USERNAME/ORGANIZER_REPOSITORY" with your own competition repository, e.g., your GitHub username and your repository name.
 
 ### 7. Submission to webots.cloud
 

@@ -69,7 +69,7 @@ Update the [README file](../../edit/main/README.md):
     - Robot: the name of the robot used in the competition
     - Language: the programming language of the example controller
     - Commitment: an idea of the time required to participate in the competition (a few minutes, a couple of hours, a couple of days, a couple of months...)
-- Replace the occurrence of "ORGANIZER_NAME" with your GitHub username in the "2. Add the Organizer as a Collaborator" subsection.
+- Replace the occurrence of "ORGANIZER_NAME" with your own GitHub username in the subsection "2. Add the Organizer as a Collaborator".
 - Remove the "Organizer setup" section at the top of the file.
 - Don't forget to commit your changes to save them.
 
@@ -83,13 +83,15 @@ You can now submit your competition to [webots.cloud](https://webots.cloud/compe
 
 When you have submitted your competition to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your participants will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
 
-### 8. Final Test
+### 8. Final Test and Clean-up
 
 The participants will register by creating a personal repository from this one and by pushing a modification of the robot controller to the main branch of their repository.
 
 To see if your repository is correctly configured you can register the competition itself to the leaderboard, you will then have an entry which will show the score of the default controller. To do this, simply modify the default controller and push the modification on the main branch.
 
 If your competition is correctly configured, the registration should work without any errors. If there is any problem, an issue will be opened on your repository with a description of the problem. There is a default timeout time of 10 minutes set in the [run workflow](.github/workflows/run.yml#L26). Typical competitions usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the competition is very complex, a default timeout time too low that needs to be increased.
+
+You can now safely delete this ORGANIZER.md file as it won't be needed anymore.
 
 Finally, once you completed all the previous steps, you can delete this file and your competition should be live!
 

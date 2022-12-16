@@ -1,4 +1,4 @@
-publish: true
+publish: false
 type: competition
 world:
   file: worlds/robot_programming.wbt

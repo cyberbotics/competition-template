@@ -67,7 +67,7 @@ Click on the "Add people" and search for "ORGANIZER_USERNAME". When you found th
 
 You can now modify your [main robot controller file](../../edit/main/controllers/participant/participant.py) or create new files in this folder and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
-If everything went well, your repository should appear after some time in the [leader board][1] of the competition.
+If everything went well, your repository should appear after some time in the [leaderboard][1] of the competition.
 If there was a problem, an [issue](../../issues) will be open automatically on your repository by the organizer.
 You will have to read it, fix what is wrong and push the changes to your main branch to re-run the automated verification.
 
@@ -94,5 +94,5 @@ Once you are statisfied with your changes, you can push them to GitHub to trigge
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 
-[1]: https://competition.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fcompetition-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leader Board"
+[1]: https://competition.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fcompetition-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leaderboard"
 

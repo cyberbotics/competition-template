@@ -38,15 +38,16 @@ There is no need to include all branches.
 
 - In order for the automated script to recover the score of participants, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).
 The score unit depends on the [metric](#supported-metrics) used for the competition which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
+The [higher_is_better](webots.yml#L7) boolean value determines whether a higher value for the metric is considered as a better or a worse performance.
 
 #### Supported Metrics
 
-| name          | description                                                                                            | score value             |
-|---------------|--------------------------------------------------------------------------------------------------------|-------------------------|
-| percent       | ranks users based on how close they are to a given objective                                           | a value between 0 and 1 |
-| time-speed    | ranks users based on how quickly they complete the objective                                             | a time in seconds       |
-| time-duration | ranks users based on how long they manage to perform a task (e.g., to maintain an inverted pendulum upright) | a time in seconds       |
-| distance      | ranks users based on how far they manage to move something (including themselves)           | a distance in meters    |
+| name     | description                                                                                            | score value             |
+|----------|--------------------------------------------------------------------------------------------------------|-------------------------|
+| percent  | ranks users based on how close they are to a given objective                                           | a value between 0 and 1 |
+| time     | ranks users based on how quickly they complete the objective or how long they manage to perform a task | a time in seconds       |
+| distance | ranks users based on how far they manage to move or how close they achieve a precise position          | a distance in meters    |
+| ranking  | ranks users with respect to each other in duel-like confrontations                                     | an integer value        |
 
 ### 4. Competition Specific Files
 
@@ -54,6 +55,7 @@ The score unit depends on the [metric](#supported-metrics) used for the competit
    - file: set the relative path to your world file.
    - maximum-duration: the maximum duration of an evaluation in seconds. Set it not too large to avoid long evaluations of broken controllers but not too short to have enough time to finish the task.
    - metric: defines the metric used for the competition. Use one of the values defined in the [metric table](#supported-metrics).
+   - higher_is_better: specify if a higher value for the metric should be considered as a better or a worse performance.
    - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "participant" to the name of your main robot controller.
    - Don't forget to commit your changes to save them.
 - When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the participant. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker. This is done to allow users to freely add dependencies if needed and to prevent any kind of cheating during the automated evaluation.

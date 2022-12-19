@@ -1,36 +1,46 @@
-## Organizer setup
+## Organizer Setup
 
-Here are the instructions for somebody who wants to organize a robotics simulation benchmark. The links in the rest of the setup are relative to the repository where this file is, so to be able to use them you should first [create your own repository](../../generate) from this template and go to its `ORGANIZER.md` file to continue reading the instructions. If you get a 404 page it's probably because you are not connected to your GitHub account.
+Here are the instructions to organize your own simulation-based robot competition.
+You will have to create and configure your own GitHub repository hosting your competition.
+Then, you should register it at [webots.cloud](https://webots.cloud/competition) to start accepting participants and actually run the competition.
+To proceed, simply follow the following steps and remember that you can open a link in a new tab by middle-clicking the link.
 
-Note that if you set your benchmark as private, you will need to add all your participants as collaborators before they can register (if you do so, you might want to protect your branches to prevent them from making any undesired changes to your files).
+### 1. Create your own repository from this template
 
-You will then need to follow those steps (remember that you can open a link in a new tab by middle-clicking the link):
+Your competition will be hosted on your own GitHub repository that you should [create now from this template](../../generate).
+If you get a 404 page it's probably because you are not connected to your GitHub account.
+On the repository creation page, provide a name and a description for your competition repository.
+We recomment to leave it public, so that participants will be able to easily access it.
+There is no need to include all branches.
 
-### GitHub settings
+**Important: Once created, you should continue reading this ORGANIZER.md file on your own repository, so that the hyperlinks included in this file will point to your own repository files.**
 
-1. Go to the [Settings tab](../../settings):
-   1. Under the General section, tick the "Template repository" box so that the competitors can easily make a copy of the simulation files.
-2. You will need to setup a GitHub secret to be able to fetch your competitors' controllers:
-   1. [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the tournament. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
-   1. Go to the repo's [secrets settings](../../settings/secrets/actions/new) to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
-3. You will also need to add three custom labels for the automation scripts: "registration", "pending" and "accepted"
-   1. Go to the [Generate new labels action](../../actions/workflows/generate_labels.yml) page under the Actions tab. Click on "Run workflow" to create automatically the needed labels. It may take a few seconds to complete the workflow.
+### 2. GitHub Settings
 
-### Webots files
+- Under the General section of the [Settings tab](../../settings), tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
+- You will need to setup a GitHub secret to be able to fetch the controllers of your participants:
+   - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the competition. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
+   - Go to the [secrets settings](../../settings/secrets/actions/new) of your repository to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
+- You will need to add [webots-cloud](https://github.com/webots-cloud) as a collaborator on your organizer repository, so that webots-cloud can start the [run workflow](.github/workflows/run.yml#L6) on your repository when participants push changes to their controllers:
+   - [Click here](../../settings/access) to go to the "Collaborators" setting page.
+   - You should see a "Manage access" box where you will see the current collaborators of the repo.
+     Click on the "Add people", search for "webots-cloud" and add it to the repository.
 
-4. Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
-   - [controllers](controllers): it's where your robot and supervisor controllers will go. In benchmarks, there is one robot controller that the participants will modify and one supervisor controller that will measure how well their controller performs.
+### 3. Webots Files
+
+- Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
+   - [controllers](controllers): it's where your robot and supervisor controllers will go. In competitions, there is at least one robot controller that the participants will modify and one supervisor controller that will measure how well their controller performs.
    - [plugins](plugins): here goes the files for the [HTML robot windows](https://www.cyberbotics.com/doc/reference/robot-window-plugin) and for a [physics plugin](https://www.cyberbotics.com/doc/reference/physics-plugin) if needed.
    - [protos](protos): if you need extra [PROTOs](https://www.cyberbotics.com/doc/reference/proto), you can add them in this folder.
-   - [worlds](worlds): it's where your world file will go. In benchmarks only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 7.](#benchmark-specific-files)).
-      - Make sure that inside your world file the **Robot node** of the robot controlled by the participants has its **"synchronization" field set to FALSE**.
-      - Note that on [webots.cloud](https://webots.cloud), the listing title of the benchmark and its hover description are defined in the Webots world file: more specifically, the **WorldInfo** node has a "title" and an "info" field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
+   - [worlds](worlds): it's where your world file will go. In competitions only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 3.](#3-competition-specific-files)).
+      - Make sure that inside your world file the **Robot node** of the robot controlled by the participants has its **"synchronization" field set to FALSE**. This is needed to avoid that a participant controller takes an unfair amount of CPU time, slowing down the simulation process.
+      - Note that on [webots.cloud](https://webots.cloud), the listing title of the competition and its hover description are defined in the Webots world file: more specifically, the [WorldInfo](worlds/robot_programming.wbt#L8) node has a [title](worlds/robot_programming.wbt#L13) and an [info](worlds/robot_programming.wbt#L9-L12) field which are parsed when submitting the world file to [webots.cloud](https://webots.cloud).
 
-6. In order for the automated script to recover the competitors' score correctly, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).
-The score unit depends on the [metric](#supported-metrics) used for the benchmark which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
+- In order for the automated script to recover the score of participants, the supervisor controller needs to print the final performance of the robot controller in the format "performance:SCORE" (only the SCORE part needs to be changed, which should be a float number).
+The score unit depends on the [metric](#supported-metrics) used for the competition which will be defined in [webots.yml](webots.yml#L6) that you will need to edit in the next step.
 The [higher_is_better](webots.yml#L7) boolean value determines whether a higher value for the metric is considered as a better or a worse performance.
 
-#### Supported metrics
+#### Supported Metrics
 
 | name     | description                                                                                            | score value             |
 |----------|--------------------------------------------------------------------------------------------------------|-------------------------|
@@ -39,60 +49,66 @@ The [higher_is_better](webots.yml#L7) boolean value determines whether a higher 
 | distance | ranks users based on how far they manage to move or how close they achieve a precise position          | a distance in meters    |
 | ranking  | ranks users with respect to each other in game-like confrontations                                     | an integer value        |
 
-### Benchmark specific files
+### 4. Competition Specific Files
 
-7. Update the parameters inside [webots.yml](../../edit/main/webots.yml):
+- Update the parameters inside [webots.yml](../../edit/main/webots.yml):
    - file: set the relative path to your world file.
    - maximum-duration: the maximum duration of an evaluation in seconds. Set it not too large to avoid long evaluations of broken controllers but not too short to have enough time to finish the task.
-   - metric: defines the metric used for the benchmark. Use one of the values defined in the [metric table](#supported-metrics).
+   - metric: defines the metric used for the competition. Use one of the values defined in the [metric table](#supported-metrics).
    - higher_is_better: specify if a higher value for the metric should be considered as a better or a worse performance.
-   - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "edit_me" to the name of your main robot controller.
+   - dockerCompose: it is a special path used by the integrated IDE and GitHub actions to locate the default robot controller. Change "participant" to the name of your main robot controller.
    - Don't forget to commit your changes to save them.
-8. When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the competitor. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker. This is done to allow users to freely add dependencies if needed and to prevent any kind of cheating during the automated evaluation.
+- When a controller is evaluated, Webots and the controller are run inside [Docker containers](https://www.docker.com/resources/what-container/). There are two Dockerfiles at the root of the repository, [Dockerfile](Dockerfile) for the Webots container and [controller_Dockerfile](controller_Dockerfile) for the controller container which contains the setup of the participant. The default [Dockerfile](Dockerfile) will launch in one docker a standard version of Webots with the world file defined in the [webots.yml](webots.yml#L4) file. The default [controller_Dockerfile](controller_Dockerfile) will launch, in another docker, a python robot controller specified in [webots.yml](webots.yml#L7) that will communicate with the Webots process running in the first docker. This is done to allow users to freely add dependencies if needed and to prevent any kind of cheating during the automated evaluation.
    - The default webots.cloud Docker image already has the tools needed to compile and run C, C++ and Python controllers but currently, the online tester can't compile C or C++ controllers for the participant's controller so only Python controllers are fully supported at the moment. The supervisor can still be in C or C++ if the make command is added to the Webots [Dockerfile](Dockerfile).
-   - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if competitors have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
-9. Replace the three files of the [preview folder](/preview) with an example animation of your benchmark [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.
+   - If you need a special environment (for example with specific libraries) for your simulation or supervisor controller you can configure the main [Dockerfile](Dockerfile) as needed. Similarly, if participants have special dependencies (like ROS 2, or some specific Python libraries) for their robot controllers, they will be able to configure their [controller_Dockerfile](controller_Dockerfile) accordingly.
+- Replace the three files of the [preview folder](/preview) with an example animation of your competition [recorded from Webots](https://cyberbotics.com/doc/guide/web-animation). Keep the same names for the files: animation.json, scene.x3d and thumbnail.jpg.
 
-### README update
+### 5. README Update
 
-Some sections from the README file are used to generate the webots.cloud benchmark page: the title, the description and an information table. Make sure to edit them while keeping them inside their respective \<span\> tags.
+Some sections from the README file are used to generate the webots.cloud competition page: the title, the description and an information table. Make sure to edit them while keeping them inside their respective \<span\> tags.
 
 Update the [README file](../../edit/main/README.md):
 
-10. Change the title and the description section to describe your new scenario. Make them the same as the title and description from the world file to avoid any inconsistencies between webots.cloud's listing and the repository's README.
-11. Update the different fields of the information section:
-    - Difficulty: an idea of the benchmark's complexity (for example: Middle School, High School, Bachelor, Master, PhD...)
-    - Robot: the name of the robot used in the benchmark
+- Change the title and the description section to describe your new scenario. Make them the same as the title and description from the world file to avoid any inconsistencies between webots.cloud's listing and the repository's README.
+- Update the different fields of the information section:
+    - Difficulty: an idea of the complexity of the competition (for example: Middle School, High School, Bachelor, Master, PhD...)
+    - Robot: the name of the robot used in the competition
     - Language: the programming language of the example controller
-    - Commitment: an idea of the time required to complete the benchmark (a few minutes, a couple of hours, a couple of days...)
-12. Replace the two occurrences of "ORGANIZER_NAME" in the "How to participate" section with your GitHub username and one "ORGANIZER_REPOSITORY" with your repository name.
-13. Remove the "Organizer setup" section at the top of the file.
-14. Don't forget to commit your changes to save them.
+    - Commitment: an idea of the time required to participate in the competition (a few minutes, a couple of hours, a couple of days, a couple of months...)
+- Replace the two occurrences of "ORGANIZER_USERNAME" with your own GitHub username.
+- Replace the occurence of "ORGANIZER_REPOSITORY" with the name of your repository.
+- Replace the occurence of "robot_programming.wbt" with your own world filename.
+- Remove the "Organizer setup" section at the top of the file.
+- Don't forget to commit your changes to save them.
 
-### Webots.cloud submission
+### 6. Workflow Update
 
-You can now submit your benchmark to [webots.cloud](https://benchmark.webots.cloud/benchmark) to share it with other people. On the website, in the "Benchmark" tab, click on "Add a new benchmark" and enter the URL to your .wbt world file located in the [worlds folder](./worlds/).
+Edit [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replace "ORGANIZER_USERNAME/ORGANIZER_REPOSITORY" with your own competition repository, e.g., your GitHub username and your repository name.
 
-When you have submitted your benchmark to webots.cloud, change the link of the shield badge at the top of the [README file](../../edit/main/README.md) to your own webots.cloud page. You will then be able to easily go to the webots.cloud site to see your updated changes and your competitors will have a handy link to the leaderboard. This link is also used in the automated messages to your participants so make sure it points to the right page.
+### 7. Submission to webots.cloud
 
-### Final test
+You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your world file located in the [worlds folder](./worlds/) in the form `https://github.com/ORGANIZER_USERNAME/REPOSITORY/blob/main/worlds/WORLD_FILE.wbt`.
 
-The participants will register their controller by generating a personal repository from this one and submit it by posting an specially formatted issue on this repository.
+### 8. Final Test and Clean-up
 
-To see if your repository is correctly configured you can register the benchmark itself to the leaderboard, you will then have an entry which will show the score of the default controller. Copy the URL of your repository and register it using the [issue form](../../issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark).
+The participants will register by creating a personal repository from this one and by pushing a modification of the robot controller to the main branch of their repository.
 
-If your benchmark is correctly configured, the registration should work without any errors. If there are any problems, read the action logs carefully for clues on how to solve them. There is a default timeout time of 10 minutes set inside the [verification.yml](./.github/workflows/verification.yml#L93) and [individual_evaluation.yml](./.github/workflows/individual_evaluation.yml#L36). Typical benchmarks usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the benchmark is very complex, a default timeout time too low that needs to be increased.
+To see if your repository is correctly configured you can register the competition itself to the leaderboard, you will then have an entry which will show the score of the default controller. To do this, simply modify the default controller and push the modification on the main branch.
 
-Finally, once you completed all the previous steps, you can delete this file and your benchmark should be good to go!
+If your competition is correctly configured, the registration should work without any errors. If there is any problem, an issue will be opened on your repository with a description of the problem. There is a default timeout time of 10 minutes set in the [run workflow](.github/workflows/run.yml#L26). Typical competitions usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the competition is very complex, a default timeout time too low that needs to be increased.
 
-### Sharing the benchmark
+You can now safely delete this ORGANIZER.md file as it won't be needed anymore.
 
-You can share the webots.cloud link which allows people to try the benchmark online and see the leaderboard or directly the repository link to get the registration instructions. A link to the repository will be also present on the webots.cloud site.
+Finally, once you completed all the previous steps, you can delete this file and your competition should be live!
 
-### Removing the benchmark from webots.cloud
+### 9. Sharing the Competition
 
-If you want to remove your benchmark from webots.cloud:
+You can share the [webots.cloud](https://webots.cloud) link which allows people to try the competition online and see the leaderboard or directly the repository link to get the registration instructions. A link to the repository will be also present on the [webots.cloud](https://webots.cloud/competition) site.
 
-1. In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false
-2. On webots.cloud, look for your benchmark and click on the synchronization icon in the "Updated" column
-3. After a moment there should be message confirming that the benchmark was deleted from the database.
+### 10. Removing the Competition from webots.cloud
+
+If you want to remove your competition from webots.cloud:
+
+- In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false or delete completely this repo.
+- On [webots.cloud](https://webots.cloud/competition), look for your competition and click on the synchronization icon in the "Updated" column.
+- After a moment there should be message confirming that the competition was deleted from the database.

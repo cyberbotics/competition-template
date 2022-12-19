@@ -16,7 +16,7 @@ print("Move the motors of the Thymio II to position " + str(target) + ".")
 robot.getDevice("motor.left").setPosition(target)
 robot.getDevice("motor.right").setPosition(target)
 
-# This is the simplest controller that works for this benchmark
+# This is the simplest controller that works for this competition
 # If you want to experiment with more complex functions, you can read the programming guide here:
 # https://www.cyberbotics.com/doc/guide/controller-programming?tab-language=python
 # or the Robot() documentation here:

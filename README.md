@@ -1,21 +1,21 @@
 <span id="title">
 
-# Benchmark organizer template
+# Competition Organizer Template
 
 </span>
 
 <!-- This is the shield badge where you can replace the webots.cloud link in brackets with your personal webots.cloud page -->
-[![webots.cloud - Benchmark](https://img.shields.io/badge/webots.cloud-Benchmark-007ACC)](https://benchmark.webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2Fcyberbotics%2Fbenchmark-template%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=benchmark)
+[![webots.cloud - Competition](https://img.shields.io/badge/webots.cloud-Competition-007ACC)][1]
 
 <!-- TODO: add examples when available
-## Benchmark examples
+## Competition Examples
 
-- <https://github.com/cyberbotics/robot-programming-benchmark-disabled>
-- <https://github.com/cyberbotics/inverted-pendulum-benchmark-disabled>
+- <https://github.com/cyberbotics/robot-programming-competition-disabled>
+- <https://github.com/cyberbotics/inverted-pendulum-competition-disabled>
 -->
-## Organizer setup
+## Organizer Setup
 
-To organize your own benchmark, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file.
+To organize your own competition, follow the instructions in the [ORGANIZER.md](../../blob/main/ORGANIZER.md) file.
 
 ---
 
@@ -23,7 +23,7 @@ To organize your own benchmark, follow the instructions in the [ORGANIZER.md](..
 
 <span id="description">
 
-Write here a short description of your benchmark.
+Write here a short description of your competition.
 
 </span>
 
@@ -36,61 +36,63 @@ Write here a short description of your benchmark.
 - Difficulty: Middle School, High School, Bachelor, Master or PhD
 - Robot: robot name
 - Language: programming language of the controller template
-- Commitment: amount of time needed to finish the benchmark
+- Commitment: amount of time needed to participate in the competition
 
 </span>
 
 ---
 
-## How to participate
+## How to Participate
 
-First of all, sign in to your GitHub account or [create one](https://github.com/signup) if you don't have any.
+If not already done, [sign in](https://github.com/login) to your GitHub account or [create one](https://github.com/signup) if you don't have any.
 
-### Summary
+### 1. Create your own Participant Repository from this Template
 
-- Create your own participant repository from this template.
-- If you set your repository as private, add this repository's creator as a collaborator.
-- Register your participation by posting an issue on this repository.
+[Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
+- Fill the "Repository name" field with a name for your controller.
+- Set the visibility of your repository to "Private" unless you don't care about people looking at your code.
+- Finally, click on the green button "Create repository from template".
 
-### Create your own participant repository from the template
+You should continue reading this document on your **own** repository page and not the one of the competition organizer. **This is important** in order to be able to use the links in the following sections. Remember that you can open a link in a new tab by middle-clicking the link.
 
-1. [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
-   1. Fill the "Repository name" field with a name for your controller.
-   1. Choose the visibility of your controller, keep it "Public" if you don't care about people looking at your controller code otherwise set it to "Private".
-   1. Finally, click on the green button "Create repository from template".
+### 2. Add the Organizer as a Collaborator
 
-You should now be on your **own** repository page and not the benchmark creator's repo. **This is important** in order to be able to use the links in the following chapters.
+You can skip this step if you created your repository as "Public" instead of "Private".
 
-#### If you set your repository as private, add the organizer as collaborator
+- [Click here](../../settings/access) to go to the "Collaborators" setting page. You might need to confirm the access by re-entering your GitHub password.
+- You should see a "Manage access" box where you will see the current collaborators of the repo.
+Click on the "Add people" and search for "ORGANIZER_USERNAME". When you found the organizer, add them to the repository.
 
-1. [Click here](../../settings/access) to go to the "Collaborators" setting page
-   1. You might need to confirm the access by re-entering your GitHub password.
-1. You should see a "Manage access" box where you will see the current collaborators of the repo.
-Click on the "Add people" and search for "ORGANIZER_NAME". When you found the organizer, add them to the repository.
+### 3. Modify your Robot Controller
 
-### Register by posting an issue
+You can now modify your [main robot controller file](../../edit/main/controllers/participant/participant.py) or create new files in this folder and push the modification to the main branch of your repository.
+A series of automated actions will take place in a few seconds.
+If everything went well, your repository should appear after some time in the [leaderboard][1] of the competition.
+If there was a problem, an [issue](../../issues) will be open automatically on your repository by the organizer.
+You will have to read it, fix what is wrong and push the changes to your main branch to re-run the automated verification.
 
-1. Go back to the main page of your repository if that is not the case and copy the repository URL from the address bar to your clipboard.
-1. [Click here](https://github.com/ORGANIZER_NAME/ORGANIZER_REPOSITORY/issues/new?assignees=&labels=registration&template=registration_form.yml&title=Registration+to+benchmark) to go to the organizer repository and start your registration. If it doesn't work, you can do it manually by going to the organizer's repository, then to the "Issues" tab, creating a new issue and choosing "Registration to benchmark".
-1. Paste your repository URL in the URL field and click the "Submit new issue" button.
+## Going Further
 
-A series of automated actions will take place in a few seconds. If everything went well, you should get a message saying that you are successfully registered to the benchmark. If there was a problem, read the feedback message, fix what is wrong and post a **"retry"** comment on the registration issue to re-run the automated verification.
+### Repository Structure
 
-This issue page is important, as it will allow you to post commands to interact with the evaluation bot, mainly to update your score with a **"run"** command. To save this link somewhere, you can edit this [README file](../../edit/main/README.md) and change the following line with your link:
+You repository contains many folders and files. However, you should make modifications only in [your robot controller directory](../../tree/main/controllers/participant), as only this directory is taken into consideration during the evaluation process, all the other files being taken from the competition organizer repository.
 
-INSERT YOUR LINK HERE
+### Supervisor
 
-The available commands are:
+The [supervisor controller](../../blob/main/controllers/supervisor/supervisor.py) is a special controller that evaluates the performance of your robot controller.
+You should inspect its source code to understand more in detail how your controller will be evaluated.
 
-- **"run"**: this will execute an automated test of your controller and update the leaderboard with its performance and the animation files.
-- **"unregister"**: use this command if you want to unregister your controller from the leaderboard.
+### Webots
 
-### Modify the template controller and/or create your own one
+It is recommended to install [Webots](https://github.com/cyberbotics/webots/releases/latest) on your computer and to checkout your repository.
+This will allow you to work on the robot controller and test immediately your changes by running the world file in Webots.
+Once you are statisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
 
-Everything should be good to go, you can modify the main controller files in the controllers folder.
+*Note:* if you push your changes on a branch which is not the default branch of your repository, no evalution will be triggered.
 
-The supervisor controller is the special controller that is used to evaluate your controller's performance. You can look at its source code to understand more in detail how your controller will be evaluated.
+### Docker
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controller_Dockerfile](controller_Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 
-You can use a different name for your controller but if you do so, remember to change the [controller_Dockerfile](controller_Dockerfile#L17) accordingly to make it launch the correct controller.
+[1]: https://webots.cloud/run?version=R2022b&url=https%3A%2F%2Fgithub.com%2FORGANIZER_USERNAME%2FORGANIZER_REPOSITORY%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leaderboard"
+

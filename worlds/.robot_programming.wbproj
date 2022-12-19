@@ -6,6 +6,6 @@ maximizedDockId: -1
 centralWidgetVisible: 1
 userInteractions: 3dContextMenuDisabled::objectMoveDisabled::forceAndTorqueDisabled
 orthographicViewHeight: 1
-textFiles: 0 "controllers/edit_me/edit_me.py"
+textFiles: 0 "controllers/participant/participant.py"
 robotWindow: robot
 consoles: Console:All:All

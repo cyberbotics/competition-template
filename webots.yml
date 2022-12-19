@@ -1,8 +1,8 @@
 publish: true
-type: benchmark
+type: competition
 world:
   file: worlds/robot_programming.wbt
   max-duration: 30
   metric: percent
   higher-is-better: true
-dockerCompose: theia:webots-project/controllers/edit_me/
+dockerCompose: theia:webots-project/controllers/participant/

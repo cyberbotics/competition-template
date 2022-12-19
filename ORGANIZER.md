@@ -47,7 +47,7 @@ The [higher_is_better](webots.yml#L7) boolean value determines whether a higher 
 | percent  | ranks users based on how close they are to a given objective                                           | a value between 0 and 1 |
 | time     | ranks users based on how quickly they complete the objective or how long they manage to perform a task | a time in seconds       |
 | distance | ranks users based on how far they manage to move or how close they achieve a precise position          | a distance in meters    |
-| ranking  | ranks users with respect to each other in game-like confrontations                                     | an integer value        |
+| ranking  | ranks users with respect to each other in duel-like confrontations                                     | an integer value        |
 
 ### 4. Competition Specific Files
 

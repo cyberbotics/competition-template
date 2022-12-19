@@ -58,7 +58,7 @@ jobs:
             There was a problem with your controller program.
             Look at the [action logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
           labels: bug
-      - name: Free queue
+      - name: Free Queue and Possibly Trigger New Workflow
         if: always()
         run: |
           curl -s -X POST -F 'organizer=${{ github.repository }}' -F'participant=${{ github.event.client_payload.repository }}' -F'organizer_repo_token=${{ github.token }}' https://webots.cloud/run_competition.php

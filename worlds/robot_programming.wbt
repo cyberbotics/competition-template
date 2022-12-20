@@ -35,6 +35,7 @@ CircleArena {
 }
 DEF COMPETITION_ROBOT Thymio2 {
   rotation 0 0 1 3.14159
+  name "participant"
   controller "participant"
   controllerArgs []
   window "<none>"

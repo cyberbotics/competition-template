@@ -29,7 +29,7 @@ There is no need to include all branches.
 ### 3. Webots Files
 
 - Replace/add all the files needed for your Webots simulation at the root of the repository, notably the folders:
-   - [controllers](controllers): it's where your robot and supervisor controllers will go. In competitions, there is at least one robot controller, typically named [participant](controller/participant), that the participants will modify and one supervisor controller that will measure how well their controller performs. If you want to change the name of the participant controller, you will have to adapt the [README.md](README.md) and [webots.yml](webots.yml#L8) files accordingly.
+   - [controllers](controllers): it's where your robot and supervisor controllers will go. In competitions, there is at least one robot controller, typically named [participant](controllers/participant), that the participants will modify and one supervisor controller that will measure how well their controller performs. If you want to change the name of the participant controller, you will have to adapt the [README.md](README.md) and [webots.yml](webots.yml#L8) files accordingly.
    - [plugins](plugins): here goes the files for the [HTML robot windows](https://www.cyberbotics.com/doc/reference/robot-window-plugin) and for a [physics plugin](https://www.cyberbotics.com/doc/reference/physics-plugin) if needed.
    - [protos](protos): if you need extra [PROTOs](https://www.cyberbotics.com/doc/reference/proto), you can add them in this folder.
    - [worlds](worlds): it's where your world file will go. In competitions only one world file will be accessible to the online testing and automated evaluation (which you will define in [step 3.](#3-competition-specific-files)).

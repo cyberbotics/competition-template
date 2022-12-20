@@ -20,4 +20,4 @@ ENV DEFAULT_CONTROLLER=${DEFAULT_CONTROLLER}
 
 # Entrypoint command to launch default Python controller script
 # (In shell form to allow variable expansion)
-ENTRYPOINT cd controllers/$DEFAULT_CONTROLLER && python3 $DEFAULT_CONTROLLER.py
+ENTRYPOINT python3 $DEFAULT_CONTROLLER.py

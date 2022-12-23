@@ -1,5 +1,5 @@
 {
   "name": "My name",
   "description": "Description of my robot controller program.",
-  "country": "Use a ISO 3166-1 alpha-2 country code here"
+  "country": "ISO 3166-1 alpha-2 country code"
 }

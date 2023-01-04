@@ -65,7 +65,7 @@ Click on the "Add people" and search for "ORGANIZER_USERNAME". When you found th
 
 ### 3. Modify your Robot Controller
 
-You can now modify your [main robot controller file](../../edit/main/controllers/participant/participant.py) or create new files in this folder and push the modification to the main branch of your repository.
+You can now edit your [participant.json](../../edit/main/controller/participant/participant.json) file to set you name, description and country information and also modify your [main robot controller file](../../edit/main/controllers/participant/participant.py) or create new files in this folder and push the modification to the main branch of your repository.
 A series of automated actions will take place in a few seconds.
 If everything went well, your repository should appear after some time in the [leaderboard][1] of the competition.
 If there was a problem, an [issue](../../issues) will be open automatically on your repository by the organizer.

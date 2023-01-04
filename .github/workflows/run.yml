@@ -34,8 +34,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
-          repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
+          # repo_id=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} | jq '.id' )
+          gh api -H "Accept: application/vnd.github+json" /repos/${{ github.event.client_payload.repository }} > repo.json
+          repo_id=$( jq '.id' repo.json )
+          repo_private=$( jq '.private' repo.json )
+          rm repo.json
+          echo "PARTICIPANT_REPO_ID=$repo_id"
+          echo "PARTICIPANT_REPO_PRIVATE=$repo_private"
+          # end of new way for getting repo_id
           echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
+          echo "PARTICIPANT_REPO_PRIVATE=$repo_private" >> $GITHUB_ENV
           echo "participant repository: ${{ github.event.client_payload.repository }}"
       - name: Checkout the Organizer Repository
         uses: actions/checkout@v3
@@ -44,7 +52,7 @@ jobs:
         id: webots_test
         uses: cyberbotics/competition-record-action@main
         env:
-          INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}', env.PARTICIPANT_REPO_ID, github.event.client_payload.repository) }}
+          INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}:{2}', env.PARTICIPANT_REPO_ID, github.event.client_payload.repository, env.PARTICIPANT_REPO_PRIVATE) }}
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           INPUT_ALLOW_PUSH: True
       - name: Feedback on Failure

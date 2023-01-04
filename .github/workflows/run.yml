@@ -1,4 +1,4 @@
-# run the evaluation of a robot controller and store the result in the participants.txt file
+# run the evaluation of a robot controller and store the result in the participants.json file
 
 name: Run Evaluation
 

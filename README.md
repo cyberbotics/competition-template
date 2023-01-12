@@ -63,7 +63,7 @@ Otherwise, you must grant access to your repository to the competition organizer
 
 - [Click here](../../settings/access) to go to the "Collaborators" setting page. You might need to confirm the access by re-entering your GitHub password.
 - You should see a "Manage access" box where you will see the current collaborators of the repo.
-Click on the "Add people" and search for "[ORGANIZER](https://github.com/ORGANIZER)".
+Click on the "Add people" and search for "[ORGANIZER_USERNAME](https://github.com/ORGANIZER_USERNAME)".
 When you found the organizer, add him to the repository.
 
 ### 3. Modify your Robot Controller

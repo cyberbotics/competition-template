@@ -76,7 +76,7 @@ Update the [README file](../../edit/main/README.md):
     - Robot: the name of the robot used in the competition
     - Language: the programming language of the example controller
     - Commitment: an idea of the time required to participate in the competition (a few minutes, a couple of hours, a couple of days, a couple of months...)
-- Replace the two occurrences of "ORGANIZER_USERNAME" with your own GitHub username.
+- Replace the three occurrences of "ORGANIZER_USERNAME" with your own GitHub username.
 - Replace the occurence of "ORGANIZER_REPOSITORY" with the name of your repository.
 - Replace the occurence of "robot_programming.wbt" with your own world filename.
 - Remove the "Organizer setup" section at the top of the file.

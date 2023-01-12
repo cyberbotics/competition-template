@@ -59,9 +59,12 @@ You should continue reading this document on your **own** repository page and no
 
 You can skip this step if you created your repository as "Public" instead of "Private".
 
+Otherwise, you must grant access to your repository to the competition organizer so that your code can be checked out to evaluate its performance and the organizer can post issues on your repository in case of problems with your code.
+
 - [Click here](../../settings/access) to go to the "Collaborators" setting page. You might need to confirm the access by re-entering your GitHub password.
 - You should see a "Manage access" box where you will see the current collaborators of the repo.
-Click on the "Add people" and search for "ORGANIZER_USERNAME". When you found the organizer, add them to the repository.
+Click on the "Add people" and search for "[ORGANIZER](https://github.com/ORGANIZER)".
+When you found the organizer, add him to the repository.
 
 ### 3. Modify your Robot Controller
 

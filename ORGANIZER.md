@@ -124,6 +124,6 @@ On the self-host runner machine, you should install a standard Ubuntu Linux dist
 apt install jq gh
 ```
 
-You should also install [docker](https://docs.docker.com/engine/install/#server).
+You should also install docker following the [official instructions](https://docs.docker.com/engine/install/ubuntu/).
 
 To benefit from OpenGL hardware acceleration, you should install the NVIDIA proprietary drivers on your self-hosted runner machine as well as the [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) package.

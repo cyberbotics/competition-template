@@ -113,3 +113,17 @@ If you want to remove your competition from webots.cloud:
 - In the file [webots.yml](../../edit/main/webots.yml) set the "publish" field to false or delete completely this repo.
 - On [webots.cloud](https://webots.cloud/competition), look for your competition and click on the synchronization icon in the "Updated" column.
 - After a moment there should be message confirming that the competition was deleted from the database.
+
+### 11. Using a Self-Hosted Runner with GPU Acceleration
+
+It is possible to make the Webots simulations run way faster in the CI compared to GitHub CI machines.
+In order to do so, you should set-up a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) and replace the [runs-on: ubuntu-20.04](.github/workflows/run.yml#L12) statement with your own runner: `runs-on: self-hosted`.
+
+On the self-host runner machine, you should install a standard Ubuntu Linux distribution and the `jq` and `gh` packages:
+```bash
+apt install jq gh
+```
+
+You should also install [docker](https://docs.docker.com/engine/install/#server).
+
+To benefit from OpenGL hardware acceleration, you should install the NVIDIA proprietary drivers on your self-hosted runner machine as well as the [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) package.

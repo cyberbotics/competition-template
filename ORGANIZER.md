@@ -127,3 +127,7 @@ apt install jq gh
 You should also install docker following the [official instructions](https://docs.docker.com/engine/install/ubuntu/).
 
 To benefit from OpenGL hardware acceleration, you should install the NVIDIA proprietary drivers on your self-hosted runner machine as well as the [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) package.
+
+## Troubleshooting
+
+Do not protect the main branch of your repository, otherwise, the run.yml workflow won't be able to commit back the updated [participants.json](participants.json) file and 3D animations.

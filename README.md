@@ -27,7 +27,7 @@ Write here a short description of your competition.
 
 </span>
 
-<img src="./preview/thumbnail.jpg" width="75%">
+<img src="preview/thumbnail.jpg" width="75%">
 
 ## Information
 

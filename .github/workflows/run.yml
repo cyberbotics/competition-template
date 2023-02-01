@@ -52,6 +52,7 @@ jobs:
         with:
           ref: competition
       - name: Record Animation and Update Performance
+        timeout-minutes: 10
         id: webots_test
         uses: cyberbotics/competition-record-action@main
         env:

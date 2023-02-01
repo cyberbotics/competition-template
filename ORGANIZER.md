@@ -88,7 +88,7 @@ Edit [trigger.yml](../../edit/main/.github/workflows/trigger.yml#L22) and replac
 
 ### 7. Submission to webots.cloud
 
-You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your world file located in the [worlds folder](./worlds/) in the form `https://github.com/ORGANIZER_USERNAME/REPOSITORY/blob/main/worlds/WORLD_FILE.wbt`.
+You can now submit your competition to [webots.cloud](https://webots.cloud/competition) to share it with other people. On the website, in the "Competition" tab, click on "Add a new competition" and enter the URL to your world file located in the [worlds folder](./worlds/) in the form `https://github.com/ORGANIZER_USERNAME/REPOSITORY/blob/competition/worlds/WORLD_FILE.wbt`.
 
 ### 8. Final Test and Clean-up
 

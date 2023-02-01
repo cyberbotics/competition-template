@@ -9,6 +9,7 @@ on:
 jobs:
   evaluation:
     name: Evaluation Requested by a Participant
+    # runs-on: self-hosted
     runs-on: ubuntu-20.04
     steps:
       - name: Is repo link actually a repo?
@@ -38,23 +39,26 @@ jobs:
           repo_id=$( jq '.id' repo.json )
           repo_private=$( jq '.private' repo.json )
           rm repo.json
+          log_url=$( gh api -H "Accept: application/vnd.github+json" /repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | jq -r '.jobs[0].html_url')
+          echo "participant repository: https://github.com/${{ github.event.client_payload.repository }}"
+          echo "LOG_URL=$log_url" >> $GITHUB_ENV
           echo "PARTICIPANT_REPO_ID=$repo_id" >> $GITHUB_ENV
           echo "PARTICIPANT_REPO_PRIVATE=$repo_private" >> $GITHUB_ENV
-          echo "participant repository: ${{ github.event.client_payload.repository }}"
           echo "PARTICIPANT_REPO_ID=$repo_id"
           echo "PARTICIPANT_REPO_PRIVATE=$repo_private"
+          echo "LOG_URL=$log_url"
       - name: Checkout the Organizer Repository
         uses: actions/checkout@v3
         with:
           ref: competition
       - name: Record Animation and Update Performance
-        timeout-minutes: 10
         id: webots_test
         uses: cyberbotics/competition-record-action@main
         env:
           INPUT_INDIVIDUAL_EVALUATION: ${{ format('{0}:{1}:{2}', env.PARTICIPANT_REPO_ID, github.event.client_payload.repository, env.PARTICIPANT_REPO_PRIVATE) }}
           INPUT_REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           INPUT_ALLOW_PUSH: True
+          LOG_URL: ${{ env.LOG_URL }}
       - name: Feedback on Failure
         if: failure() || cancelled()
         uses: actions-ecosystem/action-create-issue@v1.0.0
@@ -64,7 +68,7 @@ jobs:
           title: Failure
           body: |
             There was a problem with your controller program.
-            Look at the [action logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.
+            Look at the [action logs](${{ env.LOG_URL }}) for more details.
           labels: bug
       - name: Free Queue and Possibly Trigger New Workflow
         if: always()

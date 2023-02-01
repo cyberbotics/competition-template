@@ -45,6 +45,8 @@ jobs:
           echo "PARTICIPANT_REPO_PRIVATE=$repo_private"
       - name: Checkout the Organizer Repository
         uses: actions/checkout@v3
+        with:
+          ref: competition
       - name: Record Animation and Update Performance
         timeout-minutes: 10
         id: webots_test

@@ -14,7 +14,7 @@ on:
       opponent:
         description: "Opponent"
         required: true
-        default: "Repository of opponent"
+        default: "GitHub username of opponent"
 
 jobs:
   trigger:

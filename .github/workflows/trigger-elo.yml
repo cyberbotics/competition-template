@@ -12,9 +12,8 @@ on:
   workflow_dispatch:
     inputs:
       opponent:
-        description: "Opponent"
-        required: true
-        default: "GitHub username of opponent"
+        description: "Github username of opponent"
+        default: ""
 
 jobs:
   trigger:

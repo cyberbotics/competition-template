@@ -22,6 +22,7 @@ Keep default options and click the "Create Fork" button.
    - [Click here](../../settings/access) to go to the "Collaborators" setting page.
    - You should see a "Manage access" box where you will see the current collaborators of the repo.
      Click on the "Add people", search for "webots-cloud" and add it to the repository.
+- Finally, you will have to enable the workflows on your fork by clicking the green button on your [action page](../../actions).
 
 ### 3. Webots Files
 

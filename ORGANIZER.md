@@ -9,7 +9,8 @@ To proceed, simply follow the following steps and remember that you can open a l
 
 Your competition will be hosted on your own GitHub repository that you should [create now from this template](../../generate).
 On the repository creation page, provide a name and a description for your competition repository.
-Keep the default options (e.g., public repository, do not include all branches)
+Keep the default options, e.g., public repository, do not include all branches.
+Press the green button to create your repository.
 
 **Important: Once created, you should continue reading this ORGANIZER.md file on your own repository, so that the hyperlinks included in this file will point to your own repository files.**
 

@@ -111,11 +111,7 @@ If you want to remove your competition from webots.cloud:
 - On [webots.cloud](https://webots.cloud/competition), look for your competition and click on the synchronization icon in the "Updated" column.
 - After a moment there should be message confirming that the competition was deleted from the database.
 
-### 11. [optional] Synchronize your fork with the upstream
-
-From time to time, you may want to synchronize your forked repository with the upstream repository to benefit from the latest changes contributed to the competition template. This can be done easily from the "Sync fork" pop-up menu located on the "Code" tab.
-
-### 12. [optional] Using a Self-Hosted Runner with GPU Acceleration
+### 11. [optional] Using a Self-Hosted Runner with GPU Acceleration
 
 It is possible to make the Webots simulations run way faster in the CI compared to GitHub CI machines.
 In order to do so, you should set-up a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) and replace the [runs-on: ubuntu-20.04](.github/workflows/run.yml#L12) statement with your own runner: `runs-on: self-hosted`.

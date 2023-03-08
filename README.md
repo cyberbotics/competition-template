@@ -1,6 +1,6 @@
 <span id="title">
 
-# Competition Organizer Template
+# [Competition Organizer Template][1]
 
 </span>
 

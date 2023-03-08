@@ -5,11 +5,11 @@ You will have to create and configure your own GitHub repository hosting your co
 Then, you should register it at [webots.cloud](https://webots.cloud/competition) to start accepting participants and actually run the competition.
 To proceed, simply follow the following steps and remember that you can open a link in a new tab by middle-clicking the link.
 
-### 1. Fork your own repository from this repository
+### 1. Create your own repository from this template
 
-Your competition will be hosted on your own GitHub repository that you should [fork now from this repository](../../fork).
+Your competition will be hosted on your own GitHub repository that you should [create now from this template](../../generate).
 On the repository creation page, provide a name and a description for your competition repository.
-Keep default options and click the "Create Fork" button.
+Keep the default options (e.g., public repository, do not include all branches)
 
 **Important: Once created, you should continue reading this ORGANIZER.md file on your own repository, so that the hyperlinks included in this file will point to your own repository files.**
 
@@ -23,7 +23,6 @@ Keep default options and click the "Create Fork" button.
    - [Click here](../../settings/access) to go to the "Collaborators" setting page.
    - You should see a "Manage access" box where you will see the current collaborators of the repo.
      Click on the "Add people", search for "webots-cloud" and add it to the repository.
-- Finally, you will have to enable the workflows on your fork by clicking the green button on your [action page](../../actions).
 
 ### 3. Webots Files
 

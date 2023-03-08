@@ -111,7 +111,7 @@ If you want to remove your competition from webots.cloud:
 
 ### 11. [optional] Synchronize your fork with the upstream
 
-From time to time, you may want to synchronize your forked repository with the upstream repository to benefit from the latest changes contributed to the competition template. This can be done easily from the "Sync fork" pop-up menu
+From time to time, you may want to synchronize your forked repository with the upstream repository to benefit from the latest changes contributed to the competition template. This can be done easily from the "Sync fork" pop-up menu located on the "Code" tab.
 
 ### 12. [optional] Using a Self-Hosted Runner with GPU Acceleration
 

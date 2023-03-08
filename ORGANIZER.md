@@ -5,7 +5,7 @@ You will have to create and configure your own GitHub repository hosting your co
 Then, you should register it at [webots.cloud](https://webots.cloud/competition) to start accepting participants and actually run the competition.
 To proceed, simply follow the following steps and remember that you can open a link in a new tab by middle-clicking the link.
 
-### 1. Fork your own repository from this template
+### 1. Fork your own repository from this repository
 
 Your competition will be hosted on your own GitHub repository that you should [fork now from this repository](../../fork).
 On the repository creation page, provide a name and a description for your competition repository.
@@ -15,7 +15,6 @@ Keep default options and click the "Create Fork" button.
 
 ### 2. GitHub Settings
 
-- Under the General section of the [Settings tab](../../settings), tick the "Template repository" box so that the participants can easily make a copy of the simulation files.
 - You will need to setup a GitHub secret to be able to fetch the controllers of your participants:
    - [Create a new Personal Access Token](../../../../settings/tokens/new). Give it a name to remember what it is for and set its "Expiration" to the end of the competition. You can always set it to "No expiration" or recreate a token when it expires to allow the automated scripts to continue working. Tick the "repo" scope box, scroll down to the "Generate token" button and click it. Copy the generated code to your clipboard.
    - Go to the [secrets settings](../../settings/secrets/actions/new) of your repository to create a new repository secret. Name it "REPO_TOKEN". In the "Secret" text area, paste the Personal Access Token you just created and finally click the "Add secret" button.
@@ -110,7 +109,11 @@ If you want to remove your competition from webots.cloud:
 - On [webots.cloud](https://webots.cloud/competition), look for your competition and click on the synchronization icon in the "Updated" column.
 - After a moment there should be message confirming that the competition was deleted from the database.
 
-### 11. [optional] Using a Self-Hosted Runner with GPU Acceleration
+### 11. [optional] Synchronize your fork with the upstream
+
+From time to time, you may want to synchronize your forked repository with the upstream repository to benefit from the latest changes contributed to the competition template. This can be done easily from the "Sync fork" pop-up menu
+
+### 12. [optional] Using a Self-Hosted Runner with GPU Acceleration
 
 It is possible to make the Webots simulations run way faster in the CI compared to GitHub CI machines.
 In order to do so, you should set-up a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) and replace the [runs-on: ubuntu-20.04](.github/workflows/run.yml#L12) statement with your own runner: `runs-on: self-hosted`.

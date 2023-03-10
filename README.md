@@ -87,7 +87,7 @@ You should inspect its source code to understand more in detail how your control
 
 ### Webots
 
-It is recommended to install [Webots](https://github.com/cyberbotics/webots/releases/latest) on your computer and to checkout your repository.
+It is recommended to install [Webots R2023b or more recent](https://github.com/cyberbotics/webots/releases) (currently only available as a nightly build) on your computer and to checkout your repository.
 This will allow you to work on the robot controller and test immediately your changes by running the world file in Webots.
 Once you are statisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
 

@@ -93,8 +93,6 @@ You can now submit your competition to [webots.cloud](https://webots.cloud/compe
 
 The participants will register by creating a personal repository from this one and by pushing a modification of the robot controller to the main branch of their repository.
 
-To see if your repository is correctly configured you can register the competition itself to the leaderboard, you will then have an entry which will show the score of the default controller. To do this, simply modify the default controller and push the modification on the main branch.
-
 If your competition is correctly configured, the registration should work without any errors. If there is any problem, an issue will be opened on your repository with a description of the problem. There is a default timeout time of 10 minutes set in the [run workflow](.github/workflows/run.yml#L52). Typical competitions usually run under 5 minutes, so if there is a "The action has timed out" annotation in the GitHub Actions logs, this might be due to a problem with the supervisor or if the competition is very complex, a default timeout time too low that needs to be increased.
 
 Finally, once you completed all the previous steps, you can delete this file and your competition should be live!

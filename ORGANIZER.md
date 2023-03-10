@@ -23,7 +23,7 @@ Press the green button to create your repository.
 - You will need to add [webots-cloud](https://github.com/webots-cloud) as a collaborator with write access on your organizer repository, so that webots-cloud can start the [run workflow](.github/workflows/run.yml#L6) on your repository when participants push changes to their controllers:
   - [Click here](../../settings/access) to go to the "Collaborators" setting page.
   - You should see a "Manage access" box where you will see the current collaborators of the repo.
-     Click on the "Add people", search for "webots-cloud" and add it to the repository.
+     Click on the "Add people", search for "webots-cloud" and add it to the repository with write access.
 
 ### 3. Webots Files
 
@@ -83,7 +83,7 @@ Update the [README file](../../edit/main/README.md):
 
 ### 6. Workflow Update
 
-Edit [trigger.yml](../../edit/main/.github/workflows/trigger.yml) and replace "ORGANIZER_USERNAME/ORGANIZER_REPOSITORY" with your own competition repository, e.g., your GitHub username or organization name and your repository name.
+Edit [trigger.yml](../../edit/main/.github/workflows/trigger.yml) and replace "ORGANIZER_USERNAME/ORGANIZER_REPOSITORY" with your own competition repository, e.g., your GitHub organization name (or username) and your repository name.
 
 ### 7. Submission to webots.cloud
 

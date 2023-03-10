@@ -5,4 +5,4 @@ world:
   max-duration: 30
   metric: percent
   higher-is-better: true
-dockerCompose: theia:webots-project/controllers/participant/
+dockerCompose: competition:webots-project/controllers/participant/

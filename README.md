@@ -4,7 +4,6 @@
 
 </span>
 
-<!-- This is the shield badge where you can replace the webots.cloud link in brackets with your personal webots.cloud page -->
 [![webots.cloud - Competition](https://img.shields.io/badge/webots.cloud-Competition-007ACC)][1]
 
 <!-- TODO: add examples when available
@@ -49,6 +48,7 @@ If not already done, [sign in](https://github.com/login) to your GitHub account 
 ### 1. Create your own Participant Repository from this Template
 
 [Click here](../../generate) to create your own repository automatically or do it manually by clicking on the green button "Use this template". If you get a 404 page it's probably because you are not connected to your GitHub account.
+
 - Fill the "Repository name" field with a name for your controller.
 - Set the visibility of your repository to "Private" unless you don't care about people looking at your code.
 - Finally, click on the green button "Create repository from template".
@@ -87,15 +87,14 @@ You should inspect its source code to understand more in detail how your control
 
 ### Webots
 
-It is recommended to install [Webots](https://github.com/cyberbotics/webots/releases/latest) on your computer and to checkout your repository.
+It is recommended to install [Webots R2023b or more recent](https://github.com/cyberbotics/webots/releases) (currently only available as a nightly build) on your computer and to checkout your repository.
 This will allow you to work on the robot controller and test immediately your changes by running the world file in Webots.
-Once you are statisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
+Once you are satisfied with your changes, you can push them to GitHub to trigger the evaluation of the new version of your robot controller.
 
-*Note:* if you push your changes on a branch which is not the default branch of your repository, no evalution will be triggered.
+*Note:* if you push your changes on a branch which is not the default branch of your repository, no evaluation will be triggered.
 
 ### Docker
 
 Your controller is evaluated in a [Docker container](https://www.docker.com/resources/what-container/). If your robot controller has dependencies, such as some specific libraries, python modules or a complete ROS framework, be sure to update the [controllers/Dockerfile](controllers/Dockerfile) to include all these dependencies. The default Webots Docker container includes the tools needed to run and compile simple C, C++ and Python controllers.
 
-[1]: https://webots.cloud/run?version=R2023a&url=https%3A%2F%2Fgithub.com%2FORGANIZER_USERNAME%2FORGANIZER_REPOSITORY%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leaderboard"
-
+[1]: https://webots.cloud/run?version=R2023b&url=https%3A%2F%2Fgithub.com%2FORGANIZER_USERNAME%2FORGANIZER_REPOSITORY%2Fblob%2Fmain%2Fworlds%2Frobot_programming.wbt&type=competition "Leaderboard"

@@ -1,18 +1,16 @@
 FROM cyberbotics/webots.cloud:R2023b-ubuntu22.04-09.03.2023
 
-# Environment variables needed for Webots
-# https://cyberbotics.com/doc/guide/running-extern-robot-controllers#remote-extern-controllers
-ENV PYTHONPATH=${WEBOTS_HOME}/lib/controller/python
-ENV PYTHONIOENCODING=UTF-8
-ENV LD_LIBRARY_PATH=${WEBOTS_HOME}/lib/controller:${LD_LIBRARY_PATH}
-ARG WEBOTS_CONTROLLER_URL
-ENV WEBOTS_CONTROLLER_URL=${WEBOTS_CONTROLLER_URL}
-
 # Copies all the files of the controllers folder into the docker container
 RUN mkdir -p /usr/local/webots-project/controllers
 COPY . /usr/local/webots-project/controllers
 
-# Entrypoint command to launch default Python controller script
-# (In shell form to allow variable expansion)
+# Various setup commands
+ENV PORT=1234
+ARG WEBOTS_CONTROLLER_URL
+ENV WEBOTS_CONTROLLER_URL=${WEBOTS_CONTROLLER_URL}
 WORKDIR /usr/local/webots-project/controllers/participant
-ENTRYPOINT python3 -u participant.py
+
+# We run the controller using the extern controller launcher
+# https://cyberbotics.com/doc/guide/running-extern-robot-controllers?version=develop&tab-os=linux
+# (In shell form to allow variable expansion)
+ENTRYPOINT /usr/local/webots/webots-controller --robot-name="${WEBOTS_CONTROLLER_URL}" --port="${PORT}" participant.py

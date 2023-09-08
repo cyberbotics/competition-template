@@ -1,8 +1,8 @@
 {
-  "name": "My name",
-  "description": "Description of my robot controller program.",
-  "team": ["Name of Team Member 1", "Name of Team Member 2", "etc."],
-  "organization": "My Company or University",
-  "country": "ISO 3166-1 alpha-2 country code",
+  "name": "UDITECH",
+  "description": "TEAM OF BUCARAMANGA - COLOMBIA",
+  "team": ["NMICHAEL VARGAS", "ANDRES CAPACHO", "DANIEL BLANCO"],
+  "organization": "UNIVERSIDAD DE INVESTIGACIÓN Y DESARROLLO - UDI",
+  "country": "CO",
   "programming": "Python"
 }
